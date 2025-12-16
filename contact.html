@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JCREATIVES | Contact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Re-use the full CSS block from other pages here */
+        /* --- START OF RE-USED CSS --- */
+        :root {
+            --color-black: #000000;
+            --color-dark-bg: #0a0a0a;
+            --color-electric-blue: #2D9CDB;
+            --color-soft-grey: #F5F5F7;
+            --color-text-light: #ffffff;
+            --color-text-muted: #aaaaaa;
+            --font-main: 'Montserrat', sans-serif;
+            --section-padding: 80px 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-dark-bg);
+            color: var(--color-text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-text-light);
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-center { text-align: center; }
+        .blue-text { color: var(--color-electric-blue); }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--color-electric-blue);
+            color: var(--color-text-light);
+            border: 2px solid var(--color-electric-blue);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--color-electric-blue);
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .logo span { color: var(--color-electric-blue); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover { color: var(--color-electric-blue); }
+
+        /* --- New Contact Styles --- */
+        .page-hero {
+            padding: 180px 0 80px 0;
+            background-color: var(--color-black);
+            text-align: center;
+        }
+        .page-hero h1 { font-size: 3.5rem; }
+        .page-hero p { color: var(--color-electric-blue); font-size: 1.1rem; }
+        
+        .contact-content {
+            padding: var(--section-padding);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+        }
+
+        .contact-info h2 { font-size: 2rem; margin-bottom: 30px; }
+        .contact-info p { color: var(--color-text-muted); margin-bottom: 15px; }
+        .contact-info ul { margin-top: 30px; }
+        .contact-info ul li { margin-bottom: 15px; font-weight: 600; }
+        .contact-info ul li a { color: var(--color-text-light); }
+        .contact-info ul li a:hover { color: var(--color-electric-blue); }
+
+        /* Form Styling */
+        .contact-form form {
+            display: grid;
+            gap: 20px;
+            background-color: #111111;
+            padding: 30px;
+            border-radius: 8px;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form select,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #333;
+            background-color: #0a0a0a;
+            color: var(--color-text-light);
+            border-radius: 4px;
+            font-family: var(--font-main);
+        }
+        .contact-form textarea { resize: vertical; min-height: 150px; }
+        .contact-form .btn-primary {
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* --- FOOTER STYLES (for responsiveness) --- */
+        footer {
+            background-color: #050505;
+            padding: 80px 0 20px 0;
+            color: var(--color-text-muted);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #1a1a1a;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .page-hero { padding: 150px 0 50px 0; }
+            .page-hero h1 { font-size: 2.5rem; }
+            .contact-content { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+        /* --- END OF RE-USED CSS --- */
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo"><a href="index.html">JCREATIVES<span>.</span></a></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">The Studio Hub</a></li>
+                    <li><a href="contact.html" style="color:var(--color-electric-blue);">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="contact.html" class="btn btn-primary">Book a Shoot</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Let's Create Together</h1>
+                <p>Have a project in mind? Reach out and let's make it happen.</p>
+            </div>
+        </section>
+
+        <section class="contact-content">
+            <div class="container">
+                <div class="contact-info">
+                    <h2>Reach Out Directly</h2>
+                    <p>We are a dedicated team ready to discuss your visual needs, whether it's high-end photography, a complete brand identity, or a new digital experience.</p>
+                    <p>Fill out the form or use one of the quick contact options below.</p>
+                    <ul>
+                        <li>Email: <a href="mailto:hello@jcreatives.com">hello@jcreatives.com</a></li>
+                        <li>WhatsApp: <a href="#">+234 XXX XXXX (Quick Chat)</a></li>
+                        <li>Socials: <a href="#">@jcreatives_studio</a></li>
+                    </ul>
+
+                    <div class="backend-info">
+                        <h4>Backend Languages for Form Submission</h4>
+                        <p>In a live application, this form data would be sent to a **server-side API** built with **Python (Flask/Django)** or **JavaScript (Node.js/Express)**, which would validate the data and then use an email service (like SendGrid or Mailgun) to deliver the message.</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+
+                        <label for="service">Service Needed</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select a Service...</option>
+                            <option value="photography">Photography / Media Support</option>
+                            <option value="branding">Branding & Design</option>
+                            <option value="web">Web Design & UI/UX</option>
+                            <option value="tech">Tech / Educational Support</option>
+                            <option value="other">General Inquiry</option>
+                        </select>
+
+                        <label for="details">Project Details / Message</label>
+                        <textarea id="details" name="details" required></textarea>
+                        
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>JCREATIVES<span>.</span></h3>
+                    <p>Capturing moments. Designing impact. A modern creative brand built for the digital world.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a href="portfolio.html">Portfolio Gallery</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#photo">Photography</a></li>
+                        <li><a href="services.html#brand">Branding</a></li>
+                        <li><a href="services.html#web">Web Design</a></li>
+                        <li><a href="services.html#tech">Tech Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="mailto:hello@jcreatives.com">hello@jcreatives.com</a></li>
+                        <li><a href="tel:0000000000">Call Us</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 JCREATIVES. Built to inspire.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Stop the form from submitting normally
+
+            // 1. Collect form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+            const details = document.getElementById('details').value;
+
+            // 2. Simulate Backend Processing (Validation and Sending)
+            
+            // Console log shows what the backend would receive
+            console.log('--- Form Submission Data ---');
+            console.log('Name:', name);
+            console.log('Email:', email);
+            console.log('Service:', service);
+            console.log('Details:', details);
+            console.log('--- Data ready for Python/Node.js API ---');
+
+            // 3. User Feedback (Frontend Simulation)
+            alert(`Thank you, ${name}! Your request for ${service} has been received. A JCREATIVES team member will contact you at ${email} within 24 hours. (This is a JavaScript simulation of the server action.)`);
+
+            // 4. Reset the form
+            document.getElementById('contactForm').reset();
+        });
+    </script>
+
+</body>
+</html>
