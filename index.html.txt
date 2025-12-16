@@ -6,12 +6,11 @@
     <title>JCREATIVES | Capturing Life, Crafting Visuals</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     
-    
     <style>
         /* --- CSS VARIABLES (Based on Brand Identity - Option B Modern Tech) --- */
         :root {
             --color-black: #000000;
-            --color-dark-bg: #0a0a0a; /* Slightly softer black for backgrounds */
+            --color-dark-bg: #0a0a0a;
             --color-electric-blue: #2D9CDB;
             --color-soft-grey: #F5F5F7;
             --color-text-light: #ffffff;
@@ -63,41 +62,44 @@
         /* Buttons */
         .btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 14px 35px; /* Slightly larger buttons */
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 4px;
+            letter-spacing: 1.5px;
+            border-radius: 6px;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .btn-primary {
             background-color: var(--color-electric-blue);
-            color: var(--color-text-light);
+            color: var(--color-black); /* High contrast */
             border: 2px solid var(--color-electric-blue);
         }
 
         .btn-primary:hover {
-            background-color: transparent;
-            color: var(--color-electric-blue);
+            background-color: #55b7f0; /* Lighter blue on hover */
+            border-color: #55b7f0;
         }
 
         .btn-outline {
             background-color: transparent;
             color: var(--color-text-light);
             border: 2px solid var(--color-text-light);
-            margin-left: 10px;
+            margin-left: 15px;
         }
 
         .btn-outline:hover {
             background-color: var(--color-text-light);
             color: var(--color-black);
+            border-color: var(--color-text-light);
         }
 
 
-        /* --- HEADER & NAVIGATION --- */
+        /* --- HEADER & NAVIGATION (Kept Minimal) --- */
         header {
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent */
+            backdrop-filter: blur(5px);
             padding: 20px 0;
             position: fixed;
             width: 100%;
@@ -106,57 +108,61 @@
             border-bottom: 1px solid #1a1a1a;
         }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-        }
-
-        .logo span { color: var(--color-electric-blue); }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .nav-links a:hover { color: var(--color-electric-blue); }
-
-        /* --- HERO SECTION (Photography Focus) --- */
+        /* --- HERO SECTION (Video Background) --- */
         .hero {
-            height: 95vh;
-            /* PLACEHOLDER IMAGE - Replace URL with your best portrait/event shot */
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1492691527719-67190d3e883c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
+            position: relative;
+            height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
             text-align: center;
-            padding-top: 80px; /* Offset fixed header */
+            overflow: hidden;
+        }
+
+        #hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+        
+        /* Dark overlay for text visibility */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            padding-top: 80px;
         }
 
         .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
+            font-size: 5rem; /* Larger hero text */
+            margin-bottom: 25px;
             text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for pop */
         }
-
+        
         .hero-content p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 40px auto;
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
             color: var(--color-soft-grey);
+            font-weight: 300;
         }
 
 
@@ -166,18 +172,8 @@
             background-color: var(--color-black);
             text-align: center;
         }
-
-        .intro h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .intro p {
-            max-width: 800px;
-            margin: 0 auto;
-            color: var(--color-text-muted);
-            font-size: 1.1rem;
-        }
+        .intro h2 { font-size: 2.8rem; margin-bottom: 25px; }
+        .intro p { max-width: 900px; margin: 0 auto; color: var(--color-text-muted); font-size: 1.15rem; }
 
         /* --- SERVICES SECTION (Hierarchy Focus) --- */
         .services {
@@ -186,7 +182,7 @@
         }
 
         .section-header {
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             text-align: center;
         }
 
@@ -197,86 +193,82 @@
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
+            gap: 30px;
         }
 
         /* The main photography block spans all columns */
         .service-card.main-photo-focus {
             grid-column: 1 / -1;
-            aspect-ratio: 21 / 9; /* Cinematic widescreen aspect ratio */
-            /* PLACEHOLDER IMAGE - Replace URL with a stunning wide shot */
-            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80');
+            aspect-ratio: 21 / 9;
+            /* Placeholder for Camera/Studio Image */
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1542281286-9e0a16fb7346?q=80&w=2074&auto=format&fit=crop'); 
             background-size: cover;
             background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             padding: 40px;
+            border-radius: 8px;
         }
-
-        .service-card.main-photo-focus h3 { font-size: 2.5rem; margin-bottom: 10px; }
-        .service-card.main-photo-focus p { font-size: 1.2rem; color: var(--color-soft-grey); max-width: 600px;}
+        
+        .service-card.main-photo-focus h3 { font-size: 2.8rem; margin-bottom: 10px; }
+        .service-card.main-photo-focus p { font-size: 1.3rem; color: var(--color-soft-grey); max-width: 600px;}
 
         /* Secondary service cards */
         .service-card.secondary {
             background-color: #131313;
-            padding: 40px 30px;
+            padding: 35px 30px;
             border: 1px solid #222;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            border-radius: 8px;
+            transition: transform 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
         }
 
         .service-card.secondary:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             border-color: var(--color-electric-blue);
+            background-color: #181818;
+            box-shadow: 0 10px 20px rgba(45, 156, 219, 0.15); /* subtle blue shadow */
         }
 
         .service-icon {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--color-electric-blue);
             margin-bottom: 20px;
         }
 
-        .service-card.secondary h3 { font-size: 1.5rem; margin-bottom: 15px; }
-        .service-card.secondary p { color: var(--color-text-muted); font-size: 0.95rem;}
-        .service-list { margin-top: 15px; padding-left: 20px; color: var(--color-text-muted); font-size: 0.9rem;}
-        .service-list li { margin-bottom: 8px; list-style-type: disc;}
-
+        .service-card.secondary h3 { font-size: 1.6rem; margin-bottom: 15px; }
+        .service-card.secondary p { color: var(--color-text-muted); font-size: 1rem;}
+        .service-list { margin-top: 15px; padding-left: 0; color: var(--color-text-muted); font-size: 0.95rem; }
+        .service-list li { margin-bottom: 8px; }
 
         /* --- MISSION CTA SECTION --- */
         .mission-cta {
-             /* PLACEHOLDER IMAGE - Replace URL with a behind-the-scenes shot */
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1520822598683-304020381c26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+             /* Placeholder image: Camera Lenses/Accessories */
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1510127034237-642fdc5925d4?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
-            background-attachment: fixed; /* Parallax effect */
+            background-attachment: fixed;
             background-position: center;
-            padding: 120px 20px;
+            padding: 140px 20px;
             text-align: center;
         }
 
-        .mission-cta h2 { font-size: 3rem; margin-bottom: 30px; max-width: 800px; margin: 0 auto 30px auto;}
+        .mission-cta h2 { font-size: 3.5rem; margin-bottom: 40px; max-width: 900px; margin: 0 auto 40px auto; font-weight: 800; }
 
-        /* --- FOOTER --- */
+        /* --- FOOTER (Kept Minimal) --- */
         footer {
             background-color: #050505;
             padding: 80px 0 20px 0;
             color: var(--color-text-muted);
         }
-
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 40px;
             margin-bottom: 60px;
         }
-
         .footer-brand h3 { color: var(--color-text-light); font-size: 1.8rem; margin-bottom: 15px;}
         .footer-brand span { color: var(--color-electric-blue); }
-        .footer-brand p { max-width: 300px; }
-
         .footer-col h4 { color: var(--color-text-light); margin-bottom: 20px; font-size: 1.1rem;}
-        .footer-col ul li { margin-bottom: 12px; }
-        .footer-col ul li a:hover { color: var(--color-electric-blue); }
-
         .footer-bottom {
             text-align: center;
             padding-top: 20px;
@@ -284,24 +276,32 @@
             font-size: 0.9rem;
         }
 
-        /* --- RESPONSIVE MEDIA QUERIES --- */
+        /* --- REFINED RESPONSIVE MEDIA QUERIES --- */
         @media (max-width: 1024px) {
-            .hero-content h1 { font-size: 3rem; }
-            .service-card.main-photo-focus { aspect-ratio: 16 / 9; }
+            .hero-content h1 { font-size: 3.5rem; }
+            .service-card.main-photo-focus { aspect-ratio: 16 / 9; padding: 30px; }
+            .service-card.main-photo-focus h3 { font-size: 2rem; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; /* Simple hide for mobile in this prototype */ }
-            .hero-content h1 { font-size: 2.5rem; }
-            .hero-content p { font-size: 1rem; }
-            .btn { padding: 10px 20px; font-size: 0.9rem; }
-            .btn-outline { margin-top: 15px; margin-left: 0; }
+            .nav-links { display: none; } /* Hide for mobile */
+            .hero-content { padding-top: 100px; }
+            .hero-content h1 { font-size: 2.5rem; letter-spacing: 2px; } /* Smaller font on mobile */
+            .hero-content p { font-size: 1.1rem; margin-bottom: 30px; max-width: 90%; }
             
+            /* Stack buttons vertically on mobile */
+            .btn-outline { margin-top: 15px; margin-left: 0; display: block; }
+            
+            .intro h2 { font-size: 2rem; }
+
             /* Stack the services grid on mobile */
             .services-grid { grid-template-columns: 1fr; }
-            .service-card.main-photo-focus { aspect-ratio: 4 / 3; padding: 30px;}
+            .service-card.main-photo-focus { aspect-ratio: 4 / 3; }
             .service-card.main-photo-focus h3 { font-size: 1.8rem; }
+            
+            .mission-cta h2 { font-size: 2.2rem; }
+            .mission-cta { padding: 100px 20px; }
 
             .footer-grid { grid-template-columns: 1fr; gap: 30px; }
         }
@@ -313,35 +313,40 @@
         <div class="container nav-container">
             <div class="logo">JCREATIVES<span>.</span></div>
             <nav>
-    <ul class="nav-links">
-        <li><a href="portfolio.html" style="color:var(--color-electric-blue);">Portfolio</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="#">The Studio Hub</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
-</nav>
-             <a href="contact.html" class="btn btn-primary">Book a Shoot</a>
-            
+                <ul class="nav-links">
+                    <li><a href="portfolio.html" style="color:var(--color-electric-blue);">Portfolio</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">The Studio Hub</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="contact.html" class="btn btn-primary">Book a Shoot</a>
         </div>
     </header>
 
     <main>
         <section class="hero">
+            <video autoplay muted loop id="hero-video" preload="auto">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-changing-a-camera-lens-4632-large.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay"></div>
+            
             <div class="container hero-content">
                 <h1>Capturing Life.<br>Crafting Visuals.</h1>
-                <p>JCREATIVES is a premier photography studio integrated with professional design and digital solutions to bring ideas alive.</p>
+                <p>We are a premier photography studio integrated with professional design and digital solutions to bring your vision alive.</p>
                 <div>
-                    <a href="#" class="btn btn-primary">View Photography</a>
-                    <a href="#" class="btn btn-outline">Explore Services</a>
+                    <a href="portfolio.html" class="btn btn-primary">View Photography</a>
+                    <a href="services.html" class="btn btn-outline">Explore All Services</a>
                 </div>
             </div>
         </section>
 
         <section class="intro">
             <div class="container">
-                <h2>Visual Storytelling at Our Core.</h2>
-                <p>We believe a great image is the foundation of a great brand. While photography is our heartbeat, we use design and technology to ensure your visuals create lasting impact across every digital platform.</p>
+                <h2>Where Visual Storytelling Begins.</h2>
+                <p>We are a creativity-driven brand, dedicated to delivering high-impact media and integrated design. Our process starts behind the lens, ensuring every pixel tells a compelling, purpose-driven story.</p>
             </div>
         </section>
 
@@ -355,13 +360,13 @@
                 <div class="services-grid">
                     <div class="service-card main-photo-focus">
                         <h3>Photography & Media Production</h3>
-                        <p>High-impact visuals that define brands. From creative portraiture and events to dynamic promo visuals and partnerships.</p>
+                        <p>High-impact visuals that define brands. From creative portraiture and events to dynamic promo visuals and media partnerships.</p>
                     </div>
 
                     <div class="service-card secondary">
-                        <div class="service-icon">&#9733; </div>
+                        <div class="service-icon">🌟</div>
                         <h3>Branding & Design</h3>
-                        <p>We take strong visuals and turn them into cohesive brand identities.</p>
+                        <p>We craft brand identities that resonate, building cohesive visual systems around powerful photographic assets.</p>
                         <ul class="service-list">
                             <li>Logo Design</li>
                             <li>Brand Identity Kits</li>
@@ -370,9 +375,9 @@
                     </div>
 
                     <div class="service-card secondary">
-                        <div class="service-icon">&#9881; </div>
+                        <div class="service-icon">💻</div>
                         <h3>Web Design & UI/UX</h3>
-                        <p>Creating digital spaces designed to showcase powerful imagery.</p>
+                        <p>Creating functional, responsive, and beautiful digital homes designed to showcase exceptional photography.</p>
                         <ul class="service-list">
                             <li>Portfolio Websites</li>
                             <li>Responsive Layouts</li>
@@ -381,9 +386,9 @@
                     </div>
 
                     <div class="service-card secondary">
-                        <div class="service-icon">&#10004; </div>
+                        <div class="service-icon">🧠</div>
                         <h3>Tech & Edu Hub</h3>
-                        <p>Empowering creators with coding basics and educational resources.</p>
+                        <p>Sharing the technical foundations (code and theory) that power the digital world for the next generation of creators.</p>
                         <ul class="service-list">
                             <li>HTML & Python Basics</li>
                             <li>MATLAB Intro</li>
@@ -396,8 +401,8 @@
 
         <section class="mission-cta">
             <div class="container">
-                <h2>"Our mission is to create visually compelling content that inspires, informs, and transforms."</h2>
-                <a href="#" class="btn btn-primary">Let's Create Together</a>
+                <h2>Ready to turn your vision into a stunning visual masterpiece?</h2>
+                <a href="contact.html" class="btn btn-primary">Let's Discuss Your Project</a>
             </div>
         </section>
     </main>
@@ -412,28 +417,28 @@
                 <div class="footer-col">
                     <h4>Menu</h4>
                     <ul>
-                        <li><a href="#">Portfolio Gallery</a></li>
+                        <li><a href="portfolio.html">Portfolio Gallery</a></li>
                         <li><a href="#">About Us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="#">Photography</a></li>
-                        <li><a href="#">Branding</a></li>
-                        <li><a href="#">Web Design</a></li>
-                        <li><a href="#">Tech Resources</a></li>
+                        <li><a href="services.html#photo">Photography</a></li>
+                        <li><a href="services.html#brand">Branding</a></li>
+                        <li><a href="services.html#web">Web Design</a></li>
+                        <li><a href="services.html#tech">Tech Resources</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Connect</h4>
                     <ul>
-                        <li><a href="#">hello@jcreatives.com</a></li>
-                        <li><a href="#">WhatsApp Us</a></li>
+                        <li><a href="mailto:hello@jcreatives.com">hello@jcreatives.com</a></li>
+                        <li><a href="tel:0000000000">Call Us</a></li>
                         <li><a href="#">Instagram</a></li>
-                        <li><a href="#">X / Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
                     </ul>
                 </div>
             </div>

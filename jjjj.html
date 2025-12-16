@@ -44,11 +44,11 @@
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
         .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #1a1a1a; font-size: 0.9rem; }
         
-        /* --- CONTACT STYLES --- */
+        /* --- NEW CONTACT STYLES --- */
         .contact-section { 
             padding: var(--section-padding); 
             display: grid; 
-            grid-template-columns: 1.2fr 2fr; 
+            grid-template-columns: 1.2fr 2fr; /* Form is now visually larger than info */
             gap: 60px; 
             align-items: flex-start;
         }
@@ -149,7 +149,7 @@
                 gap: 40px;
             }
             .contact-info-cards {
-                order: 2;
+                order: 2; /* Move info below the form on smaller screens */
             }
             .contact-form-container {
                 order: 1;
@@ -202,7 +202,7 @@
                 <p>Describe your project briefly, and a senior creative strategist will be in touch shortly.</p>
                 
                 <div class="contact-form">
-                    <form action="https://formspree.io/f/xdkqrgwv" method="POST">
+                    <form id="contactForm">
                         <div class="input-group">
                             <div>
                                 <label for="name">Your Full Name</label>
@@ -210,18 +210,14 @@
                             </div>
                             <div>
                                 <label for="email">Your Best Email</label>
-                                <input type="email" id="email" name="_replyto" placeholder="you@company.com" required>
+                                <input type="email" id="email" name="email" placeholder="you@company.com" required>
                             </div>
                         </div>
 
                         <label for="service">Target Service</label>
                         <select id="service" name="service" required>
                             <option value="">— Select a primary service area —</option>
-                            <option value="photography">Photography </option>
-                             <option value="photography">Photography / Videography </option>
-                             <option value="livestreaming"> Livestreaming</option>
-                              <option value="livestreaming"> Livestreaming / Videography </option>
-                               <option value="Videography"> Videography </option>
+                            <option value="photography">Photography / Media Production</option>
                             <option value="branding">Branding & Visual Identity</option>
                             <option value="web">Web Design & Development</option>
                             <option value="tech">Tech / Educational Inquiry</option>
@@ -260,7 +256,7 @@
 
                 <div class="backend-info">
                     <h4>Deployment Note:</h4>
-                    <p>This form uses an external service (Formspree) to collect data and forward it to your email, avoiding the need for a custom server.</p>
+                    <p>To send real emails, this form must be connected to a backend service like Formspree, Netlify Forms, or a custom API using Python/Node.js.</p>
                 </div>
             </div>
         </section>
@@ -306,6 +302,27 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+            
+            // Basic validation
+            if (name && email && service) {
+                 // Provide user feedback
+                alert(`Thank you, ${name}! Your request for ${service} has been received. A JCREATIVES team member will contact you at ${email} shortly. (This is a JavaScript simulation of the server action.)`);
+
+                // Reset the form
+                document.getElementById('contactForm').reset();
+            } else {
+                 alert('Please fill out all required fields.');
+            }
+        });
+    </script>
 
 </body>
 </html>
