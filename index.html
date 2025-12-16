@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JCREATIVES | Capturing Life, Crafting Visuals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES (Based on Brand Identity - Option B Modern Tech) --- */
+        :root {
+            --color-black: #000000;
+            --color-dark-bg: #0a0a0a; /* Slightly softer black for backgrounds */
+            --color-electric-blue: #2D9CDB;
+            --color-soft-grey: #F5F5F7;
+            --color-text-light: #ffffff;
+            --color-text-muted: #aaaaaa;
+            --font-main: 'Montserrat', sans-serif;
+            --section-padding: 80px 20px;
+        }
+
+        /* --- GLOBAL RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-dark-bg);
+            color: var(--color-text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-text-light);
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-center { text-align: center; }
+        .blue-text { color: var(--color-electric-blue); }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--color-electric-blue);
+            color: var(--color-text-light);
+            border: 2px solid var(--color-electric-blue);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--color-electric-blue);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-text-light);
+            border: 2px solid var(--color-text-light);
+            margin-left: 10px;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-text-light);
+            color: var(--color-black);
+        }
+
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .logo span { color: var(--color-electric-blue); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover { color: var(--color-electric-blue); }
+
+        /* --- HERO SECTION (Photography Focus) --- */
+        .hero {
+            height: 95vh;
+            /* PLACEHOLDER IMAGE - Replace URL with your best portrait/event shot */
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1492691527719-67190d3e883c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px; /* Offset fixed header */
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            color: var(--color-soft-grey);
+        }
+
+
+        /* --- INTRO SECTION --- */
+        .intro {
+            padding: var(--section-padding);
+            background-color: var(--color-black);
+            text-align: center;
+        }
+
+        .intro h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .intro p {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--color-text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* --- SERVICES SECTION (Hierarchy Focus) --- */
+        .services {
+            padding: var(--section-padding);
+            background-color: var(--color-dark-bg);
+        }
+
+        .section-header {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .section-header p { color: var(--color-electric-blue); font-weight: 600; text-transform: uppercase;}
+
+        /* CSS Grid for Services Hierarchy */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        /* The main photography block spans all columns */
+        .service-card.main-photo-focus {
+            grid-column: 1 / -1;
+            aspect-ratio: 21 / 9; /* Cinematic widescreen aspect ratio */
+            /* PLACEHOLDER IMAGE - Replace URL with a stunning wide shot */
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+        }
+
+        .service-card.main-photo-focus h3 { font-size: 2.5rem; margin-bottom: 10px; }
+        .service-card.main-photo-focus p { font-size: 1.2rem; color: var(--color-soft-grey); max-width: 600px;}
+
+        /* Secondary service cards */
+        .service-card.secondary {
+            background-color: #131313;
+            padding: 40px 30px;
+            border: 1px solid #222;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .service-card.secondary:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-electric-blue);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            color: var(--color-electric-blue);
+            margin-bottom: 20px;
+        }
+
+        .service-card.secondary h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .service-card.secondary p { color: var(--color-text-muted); font-size: 0.95rem;}
+        .service-list { margin-top: 15px; padding-left: 20px; color: var(--color-text-muted); font-size: 0.9rem;}
+        .service-list li { margin-bottom: 8px; list-style-type: disc;}
+
+
+        /* --- MISSION CTA SECTION --- */
+        .mission-cta {
+             /* PLACEHOLDER IMAGE - Replace URL with a behind-the-scenes shot */
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1520822598683-304020381c26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-attachment: fixed; /* Parallax effect */
+            background-position: center;
+            padding: 120px 20px;
+            text-align: center;
+        }
+
+        .mission-cta h2 { font-size: 3rem; margin-bottom: 30px; max-width: 800px; margin: 0 auto 30px auto;}
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #050505;
+            padding: 80px 0 20px 0;
+            color: var(--color-text-muted);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h3 { color: var(--color-text-light); font-size: 1.8rem; margin-bottom: 15px;}
+        .footer-brand span { color: var(--color-electric-blue); }
+        .footer-brand p { max-width: 300px; }
+
+        .footer-col h4 { color: var(--color-text-light); margin-bottom: 20px; font-size: 1.1rem;}
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a:hover { color: var(--color-electric-blue); }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #1a1a1a;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 1024px) {
+            .hero-content h1 { font-size: 3rem; }
+            .service-card.main-photo-focus { aspect-ratio: 16 / 9; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; /* Simple hide for mobile in this prototype */ }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content p { font-size: 1rem; }
+            .btn { padding: 10px 20px; font-size: 0.9rem; }
+            .btn-outline { margin-top: 15px; margin-left: 0; }
+            
+            /* Stack the services grid on mobile */
+            .services-grid { grid-template-columns: 1fr; }
+            .service-card.main-photo-focus { aspect-ratio: 4 / 3; padding: 30px;}
+            .service-card.main-photo-focus h3 { font-size: 1.8rem; }
+
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo">JCREATIVES<span>.</span></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" style="color:var(--color-electric-blue);">Portfolio</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">The Studio Hub</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn btn-primary">Book a Shoot</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>Capturing Life.<br>Crafting Visuals.</h1>
+                <p>JCREATIVES is a premier photography studio integrated with professional design and digital solutions to bring ideas alive.</p>
+                <div>
+                    <a href="#" class="btn btn-primary">View Photography</a>
+                    <a href="#" class="btn btn-outline">Explore Services</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro">
+            <div class="container">
+                <h2>Visual Storytelling at Our Core.</h2>
+                <p>We believe a great image is the foundation of a great brand. While photography is our heartbeat, we use design and technology to ensure your visuals create lasting impact across every digital platform.</p>
+            </div>
+        </section>
+
+        <section class="services">
+            <div class="container">
+                <div class="section-header">
+                    <p>What We Create</p>
+                    <h2>Visuals First. Everything Else Follows.</h2>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card main-photo-focus">
+                        <h3>Photography & Media Production</h3>
+                        <p>High-impact visuals that define brands. From creative portraiture and events to dynamic promo visuals and partnerships.</p>
+                    </div>
+
+                    <div class="service-card secondary">
+                        <div class="service-icon">&#9733; </div>
+                        <h3>Branding & Design</h3>
+                        <p>We take strong visuals and turn them into cohesive brand identities.</p>
+                        <ul class="service-list">
+                            <li>Logo Design</li>
+                            <li>Brand Identity Kits</li>
+                            <li>Social Media Graphics</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card secondary">
+                        <div class="service-icon">&#9881; </div>
+                        <h3>Web Design & UI/UX</h3>
+                        <p>Creating digital spaces designed to showcase powerful imagery.</p>
+                        <ul class="service-list">
+                            <li>Portfolio Websites</li>
+                            <li>Responsive Layouts</li>
+                            <li>Organizational Sites</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card secondary">
+                        <div class="service-icon">&#10004; </div>
+                        <h3>Tech & Edu Hub</h3>
+                        <p>Empowering creators with coding basics and educational resources.</p>
+                        <ul class="service-list">
+                            <li>HTML & Python Basics</li>
+                            <li>MATLAB Intro</li>
+                            <li>Study Resources</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mission-cta">
+            <div class="container">
+                <h2>"Our mission is to create visually compelling content that inspires, informs, and transforms."</h2>
+                <a href="#" class="btn btn-primary">Let's Create Together</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>JCREATIVES<span>.</span></h3>
+                    <p>Capturing moments. Designing impact. A modern creative brand built for the digital world.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a href="#">Portfolio Gallery</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Photography</a></li>
+                        <li><a href="#">Branding</a></li>
+                        <li><a href="#">Web Design</a></li>
+                        <li><a href="#">Tech Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">hello@jcreatives.com</a></li>
+                        <li><a href="#">WhatsApp Us</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">X / Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 JCREATIVES. Built to inspire.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
