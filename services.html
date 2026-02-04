@@ -1,13 +1,20 @@
+<think>
+First, the user provided the services page code and said "update the services page also". This seems to be a continuation of modifying the website for a photographer.
+
+</think>```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JCREATIVES | Services</title>
+    <meta name="description" content="Explore our professional photography, videography, branding, web design, and tech education services. Book shoots, access client galleries, and discover creative solutions.">
+    <meta name="keywords" content="photography services, videography, livestream, branding, web design, client gallery, book shoot, creative studio">
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- For icons -->
+
     <style>
-        /* Re-use the full CSS block from index.html/portfolio.html here */
-        /* --- START OF RE-USED CSS --- */
         :root {
             --color-black: #000000;
             --color-dark-bg: #0a0a0a;
@@ -15,8 +22,10 @@
             --color-soft-grey: #F5F5F7;
             --color-text-light: #ffffff;
             --color-text-muted: #aaaaaa;
+            --color-accent: #ff6b6b;
             --font-main: 'Montserrat', sans-serif;
             --section-padding: 80px 20px;
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -41,7 +50,7 @@
         a {
             text-decoration: none;
             color: var(--color-text-light);
-            transition: color 0.3s ease;
+            transition: var(--transition);
         }
 
         ul {
@@ -57,6 +66,16 @@
         .text-center { text-align: center; }
         .blue-text { color: var(--color-electric-blue); }
 
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
         .btn {
             display: inline-block;
             padding: 12px 30px;
@@ -64,7 +83,8 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             border-radius: 4px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            cursor: pointer;
         }
 
         .btn-primary {
@@ -76,6 +96,19 @@
         .btn-primary:hover {
             background-color: transparent;
             color: var(--color-electric-blue);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--color-accent);
+            color: #fff;
+            border: 2px solid var(--color-accent);
+        }
+
+        .btn-secondary:hover {
+            background-color: transparent;
+            color: var(--color-accent);
+            transform: translateY(-2px);
         }
 
         header {
@@ -86,6 +119,7 @@
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid #1a1a1a;
+            backdrop-filter: blur(6px);
         }
 
         .nav-container {
@@ -115,253 +149,372 @@
 
         .nav-links a:hover { color: var(--color-electric-blue); }
 
-        /* --- New Services Styles --- */
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* PAGE HERO */
         .page-hero {
             padding: 180px 0 80px 0;
-            background-color: var(--color-black);
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1520822598683-304020381c26?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
             text-align: center;
+            position: relative;
         }
-        .page-hero h1 { font-size: 3.5rem; }
-        .page-hero p { color: var(--color-electric-blue); font-size: 1.1rem; }
 
+        .page-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(45,156,219,0.15), transparent 60%);
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        .page-hero p { color: var(--color-electric-blue); font-size: 1.1rem; font-weight: 600; }
+
+        /* SERVICES */
         .service-list-section {
             padding: var(--section-padding);
             padding-top: 0;
         }
+
         .service-block {
-            padding: 50px 0;
+            padding: 60px 0;
             border-bottom: 1px solid #1a1a1a;
-            display: flex;
+            display: grid;
+            grid-template-columns: 80px 1fr;
             gap: 40px;
-            align-items: flex-start;
+            align-items: start;
         }
+
         .service-block:last-child { border-bottom: none; }
 
         .service-block-icon {
             font-size: 3rem;
             color: var(--color-electric-blue);
-            flex-shrink: 0;
-            width: 60px;
             text-align: center;
         }
+
         .service-block-content h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 15px;
         }
+
         .service-block-content p {
             color: var(--color-text-muted);
             margin-bottom: 20px;
             max-width: 800px;
         }
+
         .service-block-content ul {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
         }
+
         .service-block-content li {
             font-weight: 600;
             position: relative;
-            padding-left: 15px;
+            padding-left: 20px;
         }
+
         .service-block-content li::before {
-            content: '•';
+            content: '✓';
             color: var(--color-electric-blue);
             position: absolute;
             left: 0;
+            font-weight: bold;
         }
-        
+
         .backend-info {
-            background-color: #1a1a1a;
+            background: linear-gradient(145deg, #121212, #0c0c0c);
             padding: 20px;
             margin-top: 20px;
-            border-radius: 4px;
+            border-radius: 8px;
             border-left: 4px solid var(--color-electric-blue);
         }
-        .backend-info h4 { font-size: 1rem; color: var(--color-electric-blue); margin-bottom: 10px; }
+
+        .backend-info h4 { font-size: 1.1rem; color: var(--color-electric-blue); margin-bottom: 10px; }
         .backend-info p { font-size: 0.9rem; color: var(--color-text-muted); }
 
-        /* --- Re-used CTA style --- */
+        /* PROCESS */
+        .process {
+            padding: var(--section-padding);
+            background: linear-gradient(to bottom, #0a0a0a, #000);
+        }
+
+        .process h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .process-step {
+            text-align: center;
+            background: linear-gradient(145deg, #121212, #0c0c0c);
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transition: var(--transition);
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(45,156,219,0.3);
+        }
+
+        .process-step .step-number {
+            font-size: 3rem;
+            color: var(--color-electric-blue);
+            margin-bottom: 20px;
+        }
+
+        .process-step h3 {
+            margin-bottom: 15px;
+        }
+
+        .process-step p {
+            color: var(--color-text-muted);
+        }
+
+        /* CTA */
         .mission-cta {
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1520822598683-304020381c26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), url('https://images.unsplash.com/photo-1520822598683-304020381c26?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
-            background-attachment: fixed;
             background-position: center;
             padding: 120px 20px;
             text-align: center;
         }
-        .mission-cta h2 { font-size: 3rem; margin-bottom: 30px; max-width: 800px; margin: 0 auto 30px auto;}
 
-        /* --- FOOTER STYLES (for responsiveness) --- */
+        .mission-cta h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* FOOTER */
         footer {
-            background-color: #050505;
-            padding: 80px 0 20px 0;
+            background: linear-gradient(to top, #050505, #000);
+            padding: 80px 20px 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 20px;
+            color: var(--color-electric-blue);
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
             color: var(--color-text-muted);
         }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 60px;
+
+        .footer-section ul li a:hover {
+            color: var(--color-electric-blue);
         }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+        }
+
+        .social-links a:hover {
+            color: var(--color-electric-blue);
+        }
+
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
             border-top: 1px solid #1a1a1a;
+            padding-top: 20px;
             font-size: 0.9rem;
+            color: var(--color-text-muted);
         }
-        
+
         @media (max-width: 768px) {
             .nav-links { display: none; }
+            .mobile-menu-toggle { display: block; }
             .page-hero { padding: 150px 0 50px 0; }
             .page-hero h1 { font-size: 2.5rem; }
-            .service-block { flex-direction: column; }
-            .service-block-icon { margin-bottom: 10px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .service-block { grid-template-columns: 1fr; gap: 20px; }
+            .service-block-icon { text-align: left; }
+            .process-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; }
             .mission-cta h2 { font-size: 2rem; }
         }
-        /* --- END OF RE-USED CSS --- */
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container nav-container">
-            <div class="logo"><a href="index.html">JCREATIVES<span>.</span></a></div>
-            <nav>
-                <ul class="nav-links">
+<header>
+    <div class="container nav-container">
+        <div class="logo"><a href="index.html">JCREATIVES<span>.</span></a></div>
+        <ul class="nav-links">
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="services.html" style="color:var(--color-electric-blue);">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="mobile-menu-toggle"><i class="fas fa-bars"></i></div>
+        <a href="booking.html" class="btn btn-primary">Book a Shoot</a>
+    </div>
+</header>
+
+<main>
+    <section class="page-hero">
+        <div class="page-hero-content container">
+            <h1>Creative Solutions for a Digital World</h1>
+            <p>We start with exceptional photography and build integrated creative solutions around it.</p>
+        </div>
+    </section>
+
+    <section class="service-list-section">
+        <div class="container">
+            <div class="service-block fade-in-up" id="photo">
+                <div class="service-block-icon"><i class="fas fa-camera"></i></div>
+                <div class="service-block-content">
+                    <h2>Photography & Media Production</h2>
+                    <p>Our core strength. We capture high-impact visuals essential for brand building, personal portfolios, and event coverage, including professional livestream videography.</p>
+                    <ul>
+                        <li>Creative Portraiture & Headshots</li>
+                        <li>Event Coverage & Dynamic Visuals</li>
+                        <li>Promo Visuals (Music Ministries, Brands)</li>
+                        <li>Livestream Videography & Broadcasting</li>
+                        <li>Media Partnerships & Cameraman Support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-block fade-in-up" id="brand">
+                <div class="service-block-icon"><i class="fas fa-palette"></i></div>
+                <div class="service-block-content">
+                    <h2>Branding & Design</h2>
+                    <p>Visual systems that connect. We build brand identities and assets that complement our photographic work, ensuring cohesive and memorable presentations.</p>
+                    <ul>
+                        <li>Logo Design & Brand Identity</li>
+                        <li>Full Brand Kits & Guidelines</li>
+                        <li>Flyers, Posters & Print Materials</li>
+                        <li>Social Media Graphics & Ads</li>
+                        <li>Packaging & Merchandise Design</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-block fade-in-up" id="web">
+                <div class="service-block-icon"><i class="fas fa-code"></i></div>
+                <div class="service-block-content">
+                    <h2>Web Design & Digital Experiences</h2>
+                    <p>Creating functional, responsive, and beautiful homes for your visuals online. We design intuitive interfaces and integrate backend solutions for seamless user experiences.</p>
+                    <ul>
+                        <li>Portfolio & Personal Websites</li>
+                        <li>Organizational & Business Sites</li>
+                        <li>Responsive UI/UX Layouts</li>
+                        <li>E-commerce & Booking Integrations</li>
+                        <li>SEO Optimization & Maintenance</li>
+                    </ul>
+                    <div class="backend-info">
+                        <h4>Backend Integration (Real World)</h4>
+                        <p>Web projects utilize robust backend technologies like Node.js, Python (Django/Flask), or PHP for server-side logic, databases, and secure integrations such as payment gateways or client galleries.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-block fade-in-up" id="tech">
+                <div class="service-block-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="service-block-content">
+                    <h2>Tech & Educational Support Hub</h2>
+                    <p>Empowering the next generation of creatives with technical knowledge and resources to bridge the gap between art and technology.</p>
+                    <ul>
+                        <li>HTML & Beginner Web Development</li>
+                        <li>Python Programming Basics</li>
+                        <li>MATLAB for Data & Simulations</li>
+                        <li>Study Notes (Physics, Chemistry, Math)</li>
+                        <li>Creative Tech Workshops</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process">
+        <div class="container">
+            <h2>Our Process</h2>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Consultation</h3>
+                    <p>We discuss your vision, goals, and requirements to tailor our services to your needs.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Creation</h3>
+                    <p>Our team brings your ideas to life with professional photography, design, and development.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Delivery</h3>
+                    <p>You receive high-quality deliverables, including access to client galleries for easy downloads.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Support</h3>
+                    <p>Ongoing support and revisions to ensure your complete satisfaction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission-cta">
+        <div class="container">
+            <h2>Ready to turn your vision into a visual masterpiece?</h2>
+            <a href="booking.html" class="btn btn-primary">Book a Shoot</a>
+            <a href="contact.html" class="btn btn-secondary">Get in Touch</a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>JCREATIVES<span>.</span></h4>
+                <p>Capturing moments. Designing impact. A modern creative brand built for the digital world.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Menu</h4>
+                <ul>
                     <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="services.html" style="color:var(--color-electric-blue);">Services</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">The Studio Hub</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
-            </nav>
-            <a href="contact.html" class="btn btn-primary">Book a Shoot</a>
-        </div>
-    </header>
-
-    <main>
-        <section class="page-hero">
-            <div class="container">
-                <h1>Creative Solutions for a Digital World</h1>
-                <p>We start with exceptional photography and build integrated creative solutions around it.</p>
             </div>
-        </section>
-
-        <section class="service-list-section">
-            <div class="container">
-
-                <div class="service-block" id="photo">
-                    <div class="service-block-icon">📷</div>
-                    <div class="service-block-content">
-                        <h2>Photography & Media Production</h2>
-                        <p>Our core strength. We capture high-impact visuals essential for brand building, personal portfolios, and event coverage.</p>
-                        <ul>
-                            <li>Creative Portraiture & Headshots</li>
-                            <li>Event Coverage & Dynamic Visuals</li>
-                            <li>Promo Visuals (Music Ministries, Brands)</li>
-                            <li>Media Partnerships & Cameraman Support</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="service-block" id="brand">
-                    <div class="service-block-icon">🎨</div>
-                    <div class="service-block-content">
-                        <h2>Branding & Design</h2>
-                        <p>Visual systems that connect. We build brand identities and assets that complement our photographic work.</p>
-                        <ul>
-                            <li>Logo Design</li>
-                            <li>Full Brand Identity Kits</li>
-                            <li>Flyers & Posters</li>
-                            <li>Social Media Graphics</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="service-block" id="web">
-                    <div class="service-block-icon">🌐</div>
-                    <div class="service-block-content">
-                        <h2>Web Design & Digital Experiences</h2>
-                        <p>Creating functional, responsive, and beautiful homes for your visuals online. Design is handled in the frontend, but the structure requires robust backend logic.</p>
-                        <ul>
-                            <li>Portfolio Websites</li>
-                            <li>Organizational Websites</li>
-                            <li>Responsive UI/UX Layouts</li>
-                            <li>E-commerce Integration (as required)</li>
-                        </ul>
-                        <div class="backend-info">
-                            <h4>Backend Integration (Real World)</h4>
-                            <p>Web projects often utilize **Node.js** or **Python (Django/Flask)** for server-side logic, routing, and database management (like user accounts or e-commerce transactions).</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="service-block" id="tech">
-                    <div class="service-block-icon">🧠</div>
-                    <div class="service-block-content">
-                        <h2>Tech & Educational Support Hub</h2>
-                        <p>Empowering the next generation of creatives with technical knowledge.</p>
-                        <ul>
-                            <li>HTML & Beginner Web Development</li>
-                            <li>Python Basics</li>
-                            <li>MATLAB Introduction</li>
-                            <li>Study Notes (Physics, Chemistry, Math)</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="mission-cta">
-            <div class="container">
-                <h2>Ready to turn your vision into a visual masterpiece?</h2>
-                <a href="contact.html" class="btn btn-primary">Start a Project</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3>JCREATIVES<span>.</span></h3>
-                    <p>Capturing moments. Designing impact. A modern creative brand built for the digital world.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Menu</h4>
-                    <ul>
-                        <li><a href="portfolio.html">Portfolio Gallery</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="#photo">Photography</a></li>
-                        <li><a href="#brand">Branding</a></li>
-                        <li><a href="#web">Web Design</a></li>
-                        <li><a href="#tech">Tech Resources</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Connect</h4>
-                    <ul>
-                        <li><a href="mailto:hello@jcreatives.com">hello@jcreatives.com</a></li>
-                        <li><a href="tel:0000000000">Call Us</a></li>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">LinkedIn</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 JCREATIVES. Built to inspire.</p>
-            </div>
-        </div>
-    </footer>
-
-</body>
-</html>
+            <div

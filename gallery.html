@@ -1,0 +1,491 @@
+<think>
+First, the user said "create the access gallery". From the context, this is for a client gallery where clients can log in to access their photos.
+
+
+## Interpreting user request
+- The user asked to "create the access gallery," likely referring to a client gallery for photo access.
+- This suggests a feature where clients can log in to view their photos securely.
+</think>```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JCREATIVES | Client Gallery Access</title>
+    <meta name="description" content="Secure client gallery for JCREATIVES. Log in to access and download your high-resolution photos and videos from shoots.">
+    <meta name="keywords" content="client gallery, photo access, download photos, JCREATIVES gallery, secure login">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- For icons -->
+
+    <style>
+        :root {
+            --color-black: #000000;
+            --color-dark-bg: #0a0a0a;
+            --color-electric-blue: #2D9CDB;
+            --color-soft-grey: #F5F5F7;
+            --color-text-light: #ffffff;
+            --color-text-muted: #aaaaaa;
+            --color-accent: #ff6b6b;
+            --font-main: 'Montserrat', sans-serif;
+            --section-padding: 100px 20px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--color-text-light);
+            line-height: 1.6;
+            background:
+                radial-gradient(circle at top right, rgba(45,156,219,0.15), transparent 40%),
+                radial-gradient(circle at bottom left, rgba(255,255,255,0.04), transparent 40%),
+                var(--color-dark-bg);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .btn {
+            padding: 12px 32px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            display: inline-block;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--color-electric-blue);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background: #55b7f0;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--color-accent);
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--color-electric-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-electric-blue);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* LOGIN SECTION */
+        .login-section {
+            padding: var(--section-padding);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .login-form {
+            background: linear-gradient(145deg, #121212, #0c0c0c);
+            padding: 40px;
+            border-radius: 14px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .login-form h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #333;
+            border-radius: 6px;
+            background: #1a1a1a;
+            color: #fff;
+            font-family: var(--font-main);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--color-electric-blue);
+        }
+
+        .login-btn {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .error {
+            color: var(--color-accent);
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* GALLERY SECTION */
+        .gallery-section {
+            padding: var(--section-padding);
+            display: none; /* Hidden initially */
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(45,156,219,0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .download-btn {
+            background: var(--color-electric-blue);
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .download-btn:hover {
+            background: #55b7f0;
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(to top, #050505, #000);
+            padding: 80px 20px 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 20px;
+            color: var(--color-electric-blue);
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: var(--color-text-muted);
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--color-electric-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+        }
+
+        .social-links a:hover {
+            color: var(--color-electric-blue);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-toggle { display: block; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav-container">
+        <div class="logo"><a href="index.html">JCREATIVES<span>.</span></a></div>
+        <ul class="nav-links">
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="mobile-menu-toggle"><i class="fas fa-bars"></i></div>
+        <a href="booking.html" class="btn btn-primary">Book a Shoot</a>
+    </div>
+</header>
+
+<main>
+    <section class="login-section" id="login-section">
+        <div class="container">
+            <div class="login-form fade-in-up">
+                <h2>Client Gallery Access</h2>
+                <p>Enter your credentials to view and download your photos.</p>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary login-btn">Login</button>
+                </form>
+                <p class="error" id="error-msg">Invalid credentials. Please try again.</p>
+                <p style="margin-top: 20px; color: var(--color-text-muted);">Demo: Use email 'client@jcreatives.com' and password 'demo123'.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section" id="gallery-section">
+        <div class="container">
+            <div class="gallery-header fade-in-up">
+                <h2>Your Photos</h2>
+                <p>High-resolution images from your recent shoot. Click to download.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517466549247-9753b844b204?q=80&w=1974&auto=format&fit=crop" alt="Photo 1">
+                    <div class="gallery-overlay">
+                        <a href="#" class="download-btn" onclick="alert('Download simulated')">Download</a>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1549692520-21950d210515?q=80&w=2070&auto=format&fit=crop" alt="Photo 2">
+                    <div class="gallery-overlay">
+                        <a href="#" class="download-btn" onclick="alert('Download simulated')">Download</a>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1518655048521-f130df041f66?q=80&w=2070&auto=format&fit=crop" alt="Photo 3">
+                    <div class="gallery-overlay">
+                        <a href="#" class="download-btn" onclick="alert('Download simulated')">Download</a>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1593021975760-b8e7343e74b3?q=80&w=1974&auto=format&fit=crop" alt="Photo 4">
+                    <div class="gallery-overlay">
+                        <a href="#" class="download-btn" onclick="alert('Download simulated')">Download</a>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop" alt="Photo 5">
+                    <div class="gallery-overlay">
+                        <a href="#" class="download-btn" onclick="alert('Download simulated')">Download</a>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1520607162513-774f35e4d291?q=80&w=1974&auto=format&fit=crop" alt="Photo 6">
+                    <div class="gallery-overlay">
+                        <a href="#" class="download-btn" onclick="alert('Download simulated')">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>JCREATIVES<span>.</span></h4>
+                <p>Capturing moments. Designing impact. A modern creative brand built for the digital world.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html#photo">Photography</a></li>
+                    <li><a href="services.html#brand">Branding</a></li>
+                    <li><a href="services.html#web">Web Design</a></li>
+                    <li><a href="services.html#tech">Tech Resources</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:hello@jcreatives.com">hello@jcreatives.com</a></li>
+                    <li><a href="tel:+234XXXXXXXXXX">Call Us</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 JCREATIVES. Built to inspire.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const errorMsg = document.getElementById('error-msg');
+
+        // Simple demo check
+        if (email === 'client@jcreatives.com' && password === 'demo123') {
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('gallery-section').style.display = 'block';
+            errorMsg.style.display = 'none';
+        } else {
+            errorMsg.style.display = 'block';
+        }
+    });
+</script>
+
+</body>
+</html>
