@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JCREATIVES | Portfolio – Nigerian Photography</title>
+    <meta name="description" content="Explore our portfolio featuring stunning Nigerian photography – portraits, urban life, cultural events, and commercial work captured across Lagos and beyond.">
+    <meta name="keywords" content="Nigerian photography, Lagos photographer, African portraits, Nigeria culture, professional photography">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        :root {
+            --color-black: #000000;
+            --color-dark-bg: #0a0a0a;
+            --color-electric-blue: #2D9CDB;
+            --color-soft-grey: #F5F5F7;
+            --color-text-light: #ffffff;
+            --color-text-muted: #aaaaaa;
+            --color-accent: #ff6b6b;
+            --font-main: 'Montserrat', sans-serif;
+            --section-padding: 100px 20px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--color-text-light);
+            line-height: 1.6;
+            background: var(--color-dark-bg);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-main);
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--color-electric-blue);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(45, 156, 219, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--color-electric-blue);
+            border: 2px solid var(--color-electric-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(45, 156, 219, 0.4);
+        }
+
+        .btn-outline {
+            border: 2px solid #fff;
+            background: transparent;
+            color: #fff;
+        }
+
+        .btn-outline:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        /* Header & Navigation (same as index) */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1a1a1a;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            z-index: 1001;
+        }
+
+        .logo span {
+            color: var(--color-electric-blue);
+        }
+
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-electric-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--color-electric-blue);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--color-text-light);
+            z-index: 1001;
+            padding: 5px;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-toggle:hover {
+            color: var(--color-electric-blue);
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.98);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            padding: 80px 20px 40px;
+        }
+
+        .mobile-nav.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 40px;
+        }
+
+        .mobile-nav-links a {
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            width: 100%;
+            text-align: center;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .mobile-nav-links a:hover,
+        .mobile-nav-links a.active {
+            background-color: rgba(45, 156, 219, 0.1);
+            color: var(--color-electric-blue);
+            transform: translateX(10px);
+        }
+
+        .mobile-cta {
+            margin-top: 30px;
+        }
+
+        .mobile-close {
+            position: absolute;
+            top: 25px;
+            right: 20px;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: var(--color-text-light);
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 5px;
+        }
+
+        .mobile-close:hover {
+            color: var(--color-electric-blue);
+            transform: rotate(90deg);
+        }
+
+        /* Portfolio Hero */
+        .portfolio-hero {
+            min-height: 70vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding: 140px 20px 60px;
+            overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .portfolio-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(45,156,219,0.3), transparent 70%);
+            z-index: 0;
+        }
+
+        .portfolio-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .portfolio-hero-content h1 {
+            font-size: 3.5rem;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .portfolio-hero-content p {
+            color: var(--color-soft-grey);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        /* Portfolio Filters */
+        .portfolio-filters {
+            padding: 40px 20px;
+            background: linear-gradient(to bottom, #000, #0a0a0a);
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            background: transparent;
+            border: 1px solid #333;
+            color: var(--color-text-muted);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--color-electric-blue);
+            color: #000;
+            border-color: var(--color-electric-blue);
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid-section {
+            padding: 60px 20px 80px;
+            background: linear-gradient(to bottom, #0a0a0a, #000);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 14px;
+            height: 350px;
+            cursor: pointer;
+            background: #121212;
+            border: 1px solid #222;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--color-electric-blue);
+            box-shadow: 0 15px 30px rgba(45,156,219,0.3);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 30px 25px 25px;
+            transform: translateY(0);
+            transition: var(--transition);
+        }
+
+        .portfolio-overlay h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--color-electric-blue);
+        }
+
+        .portfolio-overlay p {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 4px 12px;
+            background: rgba(45, 156, 219, 0.15);
+            border: 1px solid rgba(45, 156, 219, 0.3);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--color-electric-blue);
+        }
+
+        .view-more {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Modal */
+        .portfolio-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            padding: 40px 20px;
+            overflow-y: auto;
+        }
+
+        .portfolio-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 1000px;
+            width: 100%;
+            background: #121212;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #333;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: var(--color-electric-blue);
+            color: #000;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-details {
+            padding: 40px;
+        }
+
+        .modal-details h2 {
+            color: var(--color-electric-blue);
+            margin-bottom: 15px;
+        }
+
+        .modal-details p {
+            color: var(--color-text-muted);
+            margin-bottom: 25px;
+        }
+
+        .modal-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-item h4 {
+            color: var(--color-electric-blue);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .info-item p {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to top, #050505, #000);
+            padding: 60px 20px 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 20px;
+            color: var(--color-electric-blue);
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--color-electric-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+        }
+
+        .social-links a:hover {
+            color: var(--color-electric-blue);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        .footer-bottom a {
+            color: var(--color-text-muted);
+            text-decoration: underline;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--color-electric-blue);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .portfolio-hero-content h1 { font-size: 3rem; }
+            .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+            .portfolio-item { height: 300px; }
+            .modal-image { height: 400px; }
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav { display: none; }
+            .mobile-menu-toggle { display: block; }
+
+            .portfolio-hero { padding: 120px 20px 40px; }
+            .portfolio-hero-content h1 { font-size: 2.5rem; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .modal-image { height: 300px; }
+            .modal-details { padding: 30px 20px; }
+            .footer-content { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .portfolio-hero-content h1 { font-size: 2rem; }
+            .portfolio-overlay { padding: 20px 15px; }
+            .portfolio-overlay h3 { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container nav-container">
+        <div class="logo"><a href="index.html">JCREATIVES<span>.</span></a></div>
+        <div class="desktop-nav">
+            <a href="booking.html" class="btn btn-primary">Book a Shoot</a>
+            <a href="http://localhost/gallery/login.php" target="_blank" class="btn btn-outline">Client Login</a>
+            <ul class="nav-links">
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
+        <div class="mobile-cta">
+            <a href="booking.html" class="btn btn-primary" style="margin-bottom:30px;">Book a Shoot</a>
+            <a href="http://localhost/gallery/login.php" target="_blank" class="btn btn-outline" style="margin-bottom:20px;">Client Login</a>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="portfolio.html" class="active">Portfolio</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section with Nigerian Focus -->
+    <section class="portfolio-hero">
+        <div class="container portfolio-hero-content">
+            <h1>Nigerian Stories,<br><span style="color:var(--color-electric-blue);">Captured Beautifully</span></h1>
+            <p>From the vibrant streets of Lagos to the serene landscapes beyond – our portfolio showcases the rich tapestry of Nigerian life through professional photography.</p>
+        </div>
+    </section>
+
+    <!-- Filter Buttons -->
+    <section class="portfolio-filters">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Work</button>
+                <button class="filter-btn" data-filter="portrait">Portraits</button>
+                <button class="filter-btn" data-filter="urban">Urban Life</button>
+                <button class="filter-btn" data-filter="cultural">Cultural Events</button>
+                <button class="filter-btn" data-filter="commercial">Commercial</button>
+                <button class="filter-btn" data-filter="landscape">Landscape</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid – All images are Nigerian/Nigerian photographers -->
+    <section class="portfolio-grid-section">
+        <div class="container">
+            <div class="portfolio-grid">
+                <!-- Portrait 1 – Nigerian portrait photographer -->
+                <div class="portfolio-item" data-category="portrait" data-project="1">
+                    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2070&auto=format&fit=crop" alt="Nigerian Portrait" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Nigerian+Portrait'">
+                    <div class="portfolio-overlay">
+                        <h3>Lagos Elegance</h3>
+                        <p>Studio portrait series, Lagos</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Portrait</span>
+                            <span class="tag">Studio</span>
+                            <span class="tag">Lagos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Urban Life – Lagos street scene -->
+                <div class="portfolio-item" data-category="urban" data-project="2">
+                    <img src="https://images.unsplash.com/photo-1545158534-c5305b2a64dd?q=80&w=1974&auto=format&fit=crop" alt="Lagos Street" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Lagos+Street'">
+                    <div class="portfolio-overlay">
+                        <h3>Streets of Lagos</h3>
+                        <p>Urban life documentary</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Urban</span>
+                            <span class="tag">Street</span>
+                            <span class="tag">Documentary</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cultural Event – Traditional wedding -->
+                <div class="portfolio-item" data-category="cultural" data-project="3">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b3ce5aa?q=80&w=1974&auto=format&fit=crop" alt="Nigerian Wedding" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Nigerian+Wedding'">
+                    <div class="portfolio-overlay">
+                        <h3>Traditional Wedding</h3>
+                        <p>Yoruba ceremony, Lagos</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Cultural</span>
+                            <span class="tag">Wedding</span>
+                            <span class="tag">Event</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commercial – Nigerian product shoot -->
+                <div class="portfolio-item" data-category="commercial" data-project="4">
+                    <img src="https://images.unsplash.com/photo-1560343776-97e7d202ff0e?q=80&w=1964&auto=format&fit=crop" alt="Nigerian Fashion" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Nigerian+Fashion'">
+                    <div class="portfolio-overlay">
+                        <h3>Lagos Fashion Week</h3>
+                        <p>Commercial fashion campaign</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Commercial</span>
+                            <span class="tag">Fashion</span>
+                            <span class="tag">Branding</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Landscape – Nigerian scenery -->
+                <div class="portfolio-item" data-category="landscape" data-project="5">
+                    <img src="https://images.unsplash.com/photo-1594189049828-24f0486c8944?q=80&w=1974&auto=format&fit=crop" alt="Nigerian Landscape" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Nigerian+Landscape'">
+                    <div class="portfolio-overlay">
+                        <h3>Obudu Hills</h3>
+                        <p>Highlands of Cross River</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Landscape</span>
+                            <span class="tag">Nature</span>
+                            <span class="tag">Travel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portrait 2 – Contemporary Nigerian -->
+                <div class="portfolio-item" data-category="portrait" data-project="6">
+                    <img src="https://images.unsplash.com/photo-1524666643752-381d2a4e4dfb?q=80&w=1974&auto=format&fit=crop" alt="Nigerian Youth" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Nigerian+Youth'">
+                    <div class="portfolio-overlay">
+                        <h3>Contemporary Lagos</h3>
+                        <p>Urban youth portrait series</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Portrait</span>
+                            <span class="tag">Urban</span>
+                            <span class="tag">Lifestyle</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cultural – Festival -->
+                <div class="portfolio-item" data-category="cultural" data-project="7">
+                    <img src="https://images.unsplash.com/photo-1542037103707-dc2c9f9a33ff?q=80&w=1974&auto=format&fit=crop" alt="Nigerian Festival" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Nigerian+Festival'">
+                    <div class="portfolio-overlay">
+                        <h3>Eyo Festival</h3>
+                        <p>Lagos cultural celebration</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Cultural</span>
+                            <span class="tag">Festival</span>
+                            <span class="tag">Tradition</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commercial – Branding -->
+                <div class="portfolio-item" data-category="commercial" data-project="8">
+                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1974&auto=format&fit=crop" alt="Nigerian Brand" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Nigerian+Brand'">
+                    <div class="portfolio-overlay">
+                        <h3>Made in Nigeria</h3>
+                        <p>Product branding campaign</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Commercial</span>
+                            <span class="tag">Product</span>
+                            <span class="tag">Branding</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="view-more">
+                <p style="color: var(--color-text-muted); margin-bottom: 20px;">Inspired by Nigerian photographers: Nosa Obaseki, Ortega Alikwe, The Wallpaper Guy & more [citation:1][citation:3][citation:8]</p>
+                <a href="booking.html" class="btn btn-primary">Book Your Shoot</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="portfolio-modal" id="portfolioModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-image">
+                <img id="modalImage" src="" alt="">
+            </div>
+            <div class="modal-details">
+                <h2 id="modalTitle">Project Title</h2>
+                <p id="modalDescription">Description will appear here.</p>
+                <div class="modal-info">
+                    <div class="info-item">
+                        <h4>Location</h4>
+                        <p id="modalLocation">Lagos, Nigeria</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Category</h4>
+                        <p id="modalCategory">Portrait</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Year</h4>
+                        <p id="modalYear">2026</p>
+                    </div>
+                </div>
+                <a href="booking.html" class="btn btn-primary">Book Similar Project</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>JCREATIVES<span>.</span></h4>
+                <p>Nigerian photography and creative studio serving clients worldwide.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="booking.html">Book a Shoot</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="http://localhost/gallery/login.php" target="_blank" style="color:#2D9CDB;">Client Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li><a href="mailto:book@jcreatives.com">book@jcreatives.com</a></li>
+                    <li><a href="tel:+2349038606645">+234 903 860 6645</a></li>
+                    <li>Lagos, Nigeria</li>
+                    <li>Available Worldwide</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 JCREATIVES. All rights reserved. | <a href="privacy.html">Privacy Policy</a></p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mobile Navigation
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileClose = document.getElementById('mobileClose');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    if (mobileClose) {
+        mobileClose.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    });
+
+    mobileNav.addEventListener('click', (e) => {
+        if (e.target === mobileNav) {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.style.backgroundColor = 'rgba(0, 0, 0, 0.98)';
+            header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.5)';
+        } else {
+            header.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+            header.style.boxShadow = 'none';
+        }
+    });
+
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            const filterValue = button.getAttribute('data-filter');
+            
+            portfolioItems.forEach(item => {
+                if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Modal functionality
+    const modal = document.getElementById('portfolioModal');
+    const modalClose = document.getElementById('modalClose');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalCategory = document.getElementById('modalCategory');
+    const modalLocation = document.getElementById('modalLocation');
+    const modalYear = document.getElementById('modalYear');
+
+    const projectDetails = {
+        1: { title: 'Lagos Elegance', desc: 'Studio portrait series capturing the grace of Lagos women. Natural lighting and bold compositions.', category: 'Portrait', location: 'Lagos', year: '2026', img: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2070&auto=format&fit=crop' },
+        2: { title: 'Streets of Lagos', desc: 'Documentary photography exploring the vibrant street life of Lagos Island.', category: 'Urban', location: 'Lagos Island', year: '2025', img: 'https://images.unsplash.com/photo-1545158534-c5305b2a64dd?q=80&w=1974&auto=format&fit=crop' },
+        3: { title: 'Traditional Wedding', desc: 'Yoruba traditional wedding ceremony captured with cultural sensitivity and artistic flair.', category: 'Cultural', location: 'Ikeja, Lagos', year: '2026', img: 'https://images.unsplash.com/photo-1522673607200-164d1b3ce5aa?q=80&w=1974&auto=format&fit=crop' },
+        4: { title: 'Lagos Fashion Week', desc: 'Commercial campaign featuring emerging Nigerian designers on the runway.', category: 'Commercial', location: 'Eko Hotel', year: '2025', img: 'https://images.unsplash.com/photo-1560343776-97e7d202ff0e?q=80&w=1964&auto=format&fit=crop' },
+        5: { title: 'Obudu Hills', desc: 'Breathtaking landscapes of the Obudu Mountain Resort in Cross River State.', category: 'Landscape', location: 'Cross River', year: '2025', img: 'https://images.unsplash.com/photo-1594189049828-24f0486c8944?q=80&w=1974&auto=format&fit=crop' },
+        6: { title: 'Contemporary Lagos', desc: 'Urban youth culture documented through candid street portraits.', category: 'Portrait', location: 'Lagos Mainland', year: '2026', img: 'https://images.unsplash.com/photo-1524666643752-381d2a4e4dfb?q=80&w=1974&auto=format&fit=crop' },
+        7: { title: 'Eyo Festival', desc: 'The annual Eyo festival on Lagos Island – a celebration of Yoruba heritage.', category: 'Cultural', location: 'Lagos Island', year: '2025', img: 'https://images.unsplash.com/photo-1542037103707-dc2c9f9a33ff?q=80&w=1974&auto=format&fit=crop' },
+        8: { title: 'Made in Nigeria', desc: 'Product branding campaign celebrating locally made goods and craftsmanship.', category: 'Commercial', location: 'Lagos', year: '2026', img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1974&auto=format&fit=crop' }
+    };
+
+    portfolioItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const id = item.getAttribute('data-project');
+            const details = projectDetails[id] || projectDetails[1];
+            
+            modalImage.src = details.img;
+            modalTitle.textContent = details.title;
+            modalDescription.textContent = details.desc;
+            modalCategory.textContent = details.category;
+            modalLocation.textContent = details.location;
+            modalYear.textContent = details.year;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    modalClose.addEventListener('click', () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Image fallback
+    document.querySelectorAll('.portfolio-item img').forEach(img => {
+        img.onerror = function() {
+            this.src = 'https://via.placeholder.com/600x400?text=Nigerian+Photography';
+        };
+    });
+</script>
+
+</body>
+</html>

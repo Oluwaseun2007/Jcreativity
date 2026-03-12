@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JCREATIVES | Book a Shoot</title>
+    <meta name="description" content="Book your photography, videography, or creative session with JCREATIVES. Choose your service, select a date, and secure your spot today.">
+    <meta name="keywords" content="book photography, booking, photography session, videography booking, creative services, Lagos, worldwide">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        :root {
+            --color-black: #000000;
+            --color-dark-bg: #0a0a0a;
+            --color-electric-blue: #2D9CDB;
+            --color-soft-grey: #F5F5F7;
+            --color-text-light: #ffffff;
+            --color-text-muted: #aaaaaa;
+            --color-accent: #ff6b6b;
+            --font-main: 'Montserrat', sans-serif;
+            --section-padding: 100px 20px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--color-text-light);
+            line-height: 1.6;
+            background: var(--color-dark-bg);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-main);
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--color-electric-blue);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(45, 156, 219, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--color-electric-blue);
+            border: 2px solid var(--color-electric-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(45, 156, 219, 0.4);
+        }
+
+        .btn-outline {
+            border: 2px solid #fff;
+            background: transparent;
+            color: #fff;
+        }
+
+        .btn-outline:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1a1a1a;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            z-index: 1001;
+        }
+
+        .logo span {
+            color: var(--color-electric-blue);
+        }
+
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-electric-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--color-electric-blue);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--color-text-light);
+            z-index: 1001;
+            padding: 5px;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-toggle:hover {
+            color: var(--color-electric-blue);
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.98);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            padding: 80px 20px 40px;
+        }
+
+        .mobile-nav.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 40px;
+        }
+
+        .mobile-nav-links a {
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            width: 100%;
+            text-align: center;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .mobile-nav-links a:hover,
+        .mobile-nav-links a.active {
+            background-color: rgba(45, 156, 219, 0.1);
+            color: var(--color-electric-blue);
+            transform: translateX(10px);
+        }
+
+        .mobile-cta {
+            margin-top: 30px;
+        }
+
+        .mobile-close {
+            position: absolute;
+            top: 25px;
+            right: 20px;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: var(--color-text-light);
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 5px;
+        }
+
+        .mobile-close:hover {
+            color: var(--color-electric-blue);
+            transform: rotate(90deg);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            padding: 180px 0 80px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), 
+                        url('https://images.unsplash.com/photo-1554048614-bdb24b52dfeb?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(45,156,219,0.15), transparent 60%);
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .page-hero p {
+            color: var(--color-electric-blue);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Booking Section */
+        .booking-section {
+            padding: var(--section-padding);
+            background: linear-gradient(to bottom, #000, #0a0a0a);
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .booking-info {
+            background: linear-gradient(145deg, #121212, #0c0c0c);
+            padding: 40px;
+            border-radius: 14px;
+            border: 1px solid #333;
+        }
+
+        .booking-info h2 {
+            color: var(--color-electric-blue);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .booking-info p {
+            color: var(--color-text-muted);
+            margin-bottom: 25px;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--color-electric-blue);
+            width: 40px;
+        }
+
+        .info-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .info-item a, .info-item span {
+            color: var(--color-text-muted);
+        }
+
+        .info-item a:hover {
+            color: var(--color-electric-blue);
+        }
+
+        .booking-form {
+            background: linear-gradient(145deg, #121212, #0c0c0c);
+            padding: 40px;
+            border-radius: 14px;
+            border: 1px solid #333;
+        }
+
+        .booking-form h3 {
+            color: var(--color-electric-blue);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--color-electric-blue);
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: var(--color-text-light);
+            font-family: var(--font-main);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-electric-blue);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .checkbox-group input {
+            width: auto;
+            accent-color: var(--color-electric-blue);
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-weight: normal;
+            color: var(--color-text-muted);
+        }
+
+        .form-group .btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .form-note {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Services Quick Overview */
+        .services-overview {
+            padding: var(--section-padding);
+            background: #000;
+        }
+
+        .services-overview h2 {
+            text-align: center;
+            color: var(--color-electric-blue);
+            margin-bottom: 40px;
+        }
+
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .service-mini-card {
+            background: linear-gradient(145deg, #121212, #0c0c0c);
+            padding: 20px;
+            border-radius: 14px;
+            text-align: center;
+            border: 1px solid #333;
+            transition: var(--transition);
+        }
+
+        .service-mini-card:hover {
+            border-color: var(--color-electric-blue);
+        }
+
+        .service-mini-card i {
+            font-size: 2rem;
+            color: var(--color-electric-blue);
+            margin-bottom: 10px;
+        }
+
+        .service-mini-card h4 {
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to top, #050505, #000);
+            padding: 60px 20px 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 20px;
+            color: var(--color-electric-blue);
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--color-electric-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+        }
+
+        .social-links a:hover {
+            color: var(--color-electric-blue);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        .footer-bottom a {
+            color: var(--color-text-muted);
+            text-decoration: underline;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--color-electric-blue);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .page-hero h1 { font-size: 3rem; }
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav { display: none; }
+            .mobile-menu-toggle { display: block; }
+
+            .page-hero { padding: 150px 0 50px; }
+            .page-hero h1 { font-size: 2.5rem; }
+
+            .booking-grid { grid-template-columns: 1fr; gap: 30px; }
+            .form-row { grid-template-columns: 1fr; }
+
+            .footer-content { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 { font-size: 2rem; }
+            .booking-info, .booking-form { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container nav-container">
+        <div class="logo"><a href="index.html">JCREATIVES<span>.</span></a></div>
+        <div class="desktop-nav">
+            <a href="booking.html" class="btn btn-primary">Book a Shoot</a>
+            <a href="http://localhost/gallery/login.php" target="_blank" class="btn btn-outline">Client Login</a>
+            <ul class="nav-links">
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
+        <div class="mobile-cta">
+            <a href="booking.html" class="btn btn-primary" style="margin-bottom:30px;">Book a Shoot</a>
+            <a href="http://localhost/gallery/login.php" target="_blank" class="btn btn-outline" style="margin-bottom:20px;">Client Login</a>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+</header>
+
+<main>
+    <!-- Hero -->
+    <section class="page-hero">
+        <div class="container page-hero-content">
+            <h1>Book Your Shoot</h1>
+            <p>Secure your date – let's create something amazing together</p>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section">
+        <div class="container booking-grid">
+            <!-- Left: Info & Process -->
+            <div class="booking-info">
+                <h2>How It Works</h2>
+                <p>Booking with JCREATIVES is simple. Fill out the form, and we'll get back to you within 24 hours to confirm your session and answer any questions.</p>
+                
+                <div class="info-item">
+                    <i class="fas fa-calendar-check"></i>
+                    <div>
+                        <h4>1. Choose Your Service & Date</h4>
+                        <p>Select the type of shoot and your preferred date. We'll check availability.</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-file-signature"></i>
+                    <div>
+                        <h4>2. Confirmation & Contract</h4>
+                        <p>We'll send a confirmation with a contract and payment details.</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-camera"></i>
+                    <div>
+                        <h4>3. Shoot Day</h4>
+                        <p>We capture your vision with professional equipment and creative direction.</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-images"></i>
+                    <div>
+                        <h4>4. Delivery</h4>
+                        <p>Receive edited images/videos via a private online gallery, ready to download and share.</p>
+                    </div>
+                </div>
+                
+                <p style="margin-top:20px; color:var(--color-electric-blue);">✨ Existing clients can access their galleries via the Client Login button above.</p>
+            </div>
+            
+            <!-- Right: Booking Form -->
+            <div class="booking-form">
+                <h3>Booking Request</h3>
+                <form id="bookingForm" action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Type *</label>
+                        <select id="service" name="service" required>
+                            <option value="">-- Select a service --</option>
+                            <option value="portrait">Portrait Photography</option>
+                            <option value="event">Event Coverage</option>
+                            <option value="branding">Branding & Commercial</option>
+                            <option value="videography">Videography</option>
+                            <option value="livestream">Livestream Production</option>
+                            <option value="web">Web Design</option>
+                            <option value="other">Other / Custom</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Preferred Date *</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Preferred Time</label>
+                            <input type="time" id="time" name="time">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location (City, Venue)</label>
+                        <input type="text" id="location" name="location" placeholder="e.g., Lagos, Nigeria / Your address">
+                    </div>
+                    <div class="form-group">
+                        <label for="details">Tell us about your project</label>
+                        <textarea id="details" name="details" placeholder="Describe the vision, number of people, any special requirements..."></textarea>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the <a href="privacy.html" style="color:var(--color-electric-blue); text-decoration:underline;">terms & conditions</a> and privacy policy.</label>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit Booking Request</button>
+                    </div>
+                </form>
+                <div class="form-note">We'll reply within 24 hours to confirm availability.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Service Overview -->
+    <section class="services-overview">
+        <div class="container">
+            <h2>Our Services at a Glance</h2>
+            <div class="mini-grid">
+                <div class="service-mini-card">
+                    <i class="fas fa-camera-retro"></i>
+                    <h4>Portrait</h4>
+                </div>
+                <div class="service-mini-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h4>Events</h4>
+                </div>
+                <div class="service-mini-card">
+                    <i class="fas fa-bullhorn"></i>
+                    <h4>Branding</h4>
+                </div>
+                <div class="service-mini-card">
+                    <i class="fas fa-video"></i>
+                    <h4>Videography</h4>
+                </div>
+                <div class="service-mini-card">
+                    <i class="fas fa-broadcast-tower"></i>
+                    <h4>Livestream</h4>
+                </div>
+                <div class="service-mini-card">
+                    <i class="fas fa-code"></i>
+                    <h4>Web Design</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>JCREATIVES<span>.</span></h4>
+                <p>Professional photography and creative studio based in Lagos, serving clients worldwide.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="booking.html">Book a Shoot</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="http://localhost/gallery/login.php" target="_blank" style="color:#2D9CDB;">Client Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li><a href="mailto:book@jcreatives.com">book@jcreatives.com</a></li>
+                    <li><a href="tel:+2349038606645">+234 903 860 6645</a></li>
+                    <li>Lagos, Nigeria</li>
+                    <li>Available Worldwide</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 JCREATIVES. All rights reserved. | <a href="privacy.html">Privacy Policy</a></p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mobile Navigation Toggle (same as other pages)
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileClose = document.getElementById('mobileClose');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    if (mobileClose) {
+        mobileClose.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    });
+
+    mobileNav.addEventListener('click', (e) => {
+        if (e.target === mobileNav) {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.style.backgroundColor = 'rgba(0, 0, 0, 0.98)';
+            header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.5)';
+        } else {
+            header.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+            header.style.boxShadow = 'none';
+        }
+    });
+
+    // Demo form handling (remove or replace with actual backend)
+    const bookingForm = document.getElementById('bookingForm');
+    if (bookingForm) {
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you! Your booking request has been submitted. We will contact you within 24 hours.');
+            bookingForm.reset();
+        });
+    }
+</script>
+
+</body>
+</html>
