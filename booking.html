@@ -572,7 +572,6 @@
         <div class="logo"><a href="index.html">JCREATIVES<span>.</span></a></div>
         <div class="desktop-nav">
             <a href="booking.html" class="btn btn-primary">Book a Shoot</a>
-            <a href="http://localhost/gallery/login.php" target="_blank" class="btn btn-outline">Client Login</a>
             <ul class="nav-links">
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="services.html">Services</a></li>
@@ -586,7 +585,6 @@
         <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
         <div class="mobile-cta">
             <a href="booking.html" class="btn btn-primary" style="margin-bottom:30px;">Book a Shoot</a>
-            <a href="http://localhost/gallery/login.php" target="_blank" class="btn btn-outline" style="margin-bottom:20px;">Client Login</a>
         </div>
         <ul class="mobile-nav-links">
             <li><a href="portfolio.html">Portfolio</a></li>
@@ -643,13 +641,15 @@
                     </div>
                 </div>
                 
-                <p style="margin-top:20px; color:var(--color-electric-blue);">✨ Existing clients can access their galleries via the Client Login button above.</p>
             </div>
             
             <!-- Right: Booking Form -->
             <div class="booking-form">
                 <h3>Booking Request</h3>
-                <form id="bookingForm" action="#" method="post">
+                <form id="bookingForm" action="https://formsubmit.co/jcreativesmultimediaproduction@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="New booking request - JCREATIVES">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
                     <div class="form-group">
                         <label for="name">Full Name *</label>
                         <input type="text" id="name" name="name" required>
@@ -757,26 +757,16 @@
                     <li><a href="services.html">Services</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="http://localhost/gallery/login.php" target="_blank" style="color:#2D9CDB;">Client Login</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>Contact Info</h4>
                 <ul>
-                    <li><a href="mailto:book@jcreatives.com">book@jcreatives.com</a></li>
+                    <li><a href="mailto:jcreativesmultimediaproduction@gmail.com">jcreativesmultimediaproduction@gmail.com</a></li>
                     <li><a href="tel:+2349038606645">+234 903 860 6645</a></li>
                     <li>Lagos, Nigeria</li>
                     <li>Available Worldwide</li>
                 </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Follow Us</h4>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                </div>
             </div>
         </div>
         <div class="footer-bottom">
@@ -839,15 +829,6 @@
         }
     });
 
-    // Demo form handling (remove or replace with actual backend)
-    const bookingForm = document.getElementById('bookingForm');
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you! Your booking request has been submitted. We will contact you within 24 hours.');
-            bookingForm.reset();
-        });
-    }
 </script>
 
 </body>

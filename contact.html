@@ -527,7 +527,6 @@
         <!-- Desktop Navigation -->
         <div class="desktop-nav">
             <a href="booking.html" class="btn btn-primary">Book a Shoot</a>
-            <a href="http://localhost/gallery/login.php" target="_blank" class="btn btn-outline">Client Login</a>
             <ul class="nav-links">
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="services.html">Services</a></li>
@@ -547,7 +546,6 @@
         <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
         <div class="mobile-cta">
             <a href="booking.html" class="btn btn-primary" style="margin-bottom: 30px;">Book a Shoot</a>
-            <a href="http://localhost/gallery/login.php" target="_blank" class="btn btn-outline" style="margin-bottom: 20px;">Client Login</a>
         </div>
         <ul class="mobile-nav-links">
             <li><a href="portfolio.html">Portfolio</a></li>
@@ -579,8 +577,7 @@
                     <i class="fas fa-envelope"></i>
                     <div>
                         <h4>Email Us</h4>
-                        <a href="mailto:book@jcreatives.com">book@jcreatives.com</a><br>
-                        <a href="mailto:info@jcreatives.com">info@jcreatives.com</a>
+                        <a href="mailto:jcreativesmultimediaproduction@gmail.com">jcreativesmultimediaproduction@gmail.com</a>
                     </div>
                 </div>
                 
@@ -610,18 +607,15 @@
                     </div>
                 </div>
                 
-                <div class="social-links">
-                    <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                </div>
             </div>
             
             <!-- Contact Form -->
             <div class="contact-form">
                 <h3>Send us a message</h3>
-                <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
+                <form id="contactForm" action="https://formsubmit.co/jcreativesmultimediaproduction@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="New message - JCREATIVES website">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
                     <div class="form-group">
                         <label for="name">Your Name *</label>
                         <input type="text" id="name" name="name" required>
@@ -681,26 +675,16 @@
                     <li><a href="services.html">Services</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="http://localhost/gallery/login.php" target="_blank" style="color: #2D9CDB;">Client Login</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>Contact Info</h4>
                 <ul>
-                    <li><a href="mailto:jcreativesmultimediaproduction@gmail.com">book@jcreatives.com</a></li>
+                    <li><a href="mailto:jcreativesmultimediaproduction@gmail.com">jcreativesmultimediaproduction@gmail.com</a></li>
                     <li><a href="tel:+2349038606645">+234 903 860 6645</a></li>
                     <li>Available Worldwide</li>
                     <li>24/7 Online Support</li>
                 </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Follow Us</h4>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                </div>
             </div>
         </div>
         <div class="footer-bottom">
@@ -763,15 +747,6 @@
         }
     });
 
-    // Form submission handling (optional demo)
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you! Your message has been sent. We\'ll get back to you soon.');
-            contactForm.reset();
-        });
-    }
 </script>
 </body>
 </html>

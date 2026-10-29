@@ -272,10 +272,7 @@
             text-align: center;
             padding: 140px 20px 60px;
             overflow: hidden;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
+            background: radial-gradient(circle at 30% 40%, rgba(45,156,219,0.25), transparent 60%), linear-gradient(#0a0a0a, #000);
         }
 
         .portfolio-hero::before {
@@ -609,6 +606,22 @@
             .portfolio-overlay { padding: 20px 15px; }
             .portfolio-overlay h3 { font-size: 1.1rem; }
         }
+    
+        /* Masonry-style portfolio: shows each photo uncropped */
+        .portfolio-grid { display: block; column-count: 3; column-gap: 20px; }
+        .portfolio-item { display: block; height: auto; margin: 0 0 20px; break-inside: avoid; }
+        .portfolio-item img { height: auto; display: block; }
+        @media (max-width: 900px) { .portfolio-grid { column-count: 2; column-gap: 14px; } .portfolio-item { margin-bottom: 14px; } }
+        @media (max-width: 520px) { .portfolio-grid { column-count: 1; } }
+        /* Lightbox */
+        .lb { position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,.94); display: none; align-items: center; justify-content: center; padding: 20px; }
+        .lb.active { display: flex; }
+        .lb img { max-width: 100%; max-height: 92vh; object-fit: contain; border-radius: 6px; }
+        .lb-btn { position: absolute; background: rgba(255,255,255,.1); color: #fff; border: 0; border-radius: 50%; width: 46px; height: 46px; font-size: 1.8rem; line-height: 1; cursor: pointer; }
+        .lb-btn:hover { background: var(--color-electric-blue); color: #000; }
+        .lb-close { top: 18px; right: 18px; }
+        .lb-prev { left: 14px; top: 50%; transform: translateY(-50%); }
+        .lb-next { right: 14px; top: 50%; transform: translateY(-50%); }
     </style>
 </head>
 <body>
@@ -618,7 +631,6 @@
         <div class="logo"><a href="index.html">JCREATIVES<span>.</span></a></div>
         <div class="desktop-nav">
             <a href="booking.html" class="btn btn-primary">Book a Shoot</a>
-            <a href="http://localhost/gallery/login.php" target="_blank" class="btn btn-outline">Client Login</a>
             <ul class="nav-links">
                 <li><a href="portfolio.html" class="active">Portfolio</a></li>
                 <li><a href="services.html">Services</a></li>
@@ -632,7 +644,6 @@
         <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
         <div class="mobile-cta">
             <a href="booking.html" class="btn btn-primary" style="margin-bottom:30px;">Book a Shoot</a>
-            <a href="http://localhost/gallery/login.php" target="_blank" class="btn btn-outline" style="margin-bottom:20px;">Client Login</a>
         </div>
         <ul class="mobile-nav-links">
             <li><a href="portfolio.html" class="active">Portfolio</a></li>
@@ -647,176 +658,75 @@
     <!-- Hero Section with Nigerian Focus -->
     <section class="portfolio-hero">
         <div class="container portfolio-hero-content">
-            <h1>Nigerian Stories,<br><span style="color:var(--color-electric-blue);">Captured Beautifully</span></h1>
-            <p>From the vibrant streets of Lagos to the serene landscapes beyond – our portfolio showcases the rich tapestry of Nigerian life through professional photography.</p>
+            <h1>Studio Portraits,<br><span style="color:var(--color-electric-blue);">Made to Be Remembered</span></h1>
+            <p>A selection of recent studio sessions: considered lighting, styling and posing, so every portrait looks like the best version of you.</p>
         </div>
     </section>
 
-    <!-- Filter Buttons -->
-    <section class="portfolio-filters">
-        <div class="container">
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All Work</button>
-                <button class="filter-btn" data-filter="portrait">Portraits</button>
-                <button class="filter-btn" data-filter="urban">Urban Life</button>
-                <button class="filter-btn" data-filter="cultural">Cultural Events</button>
-                <button class="filter-btn" data-filter="commercial">Commercial</button>
-                <button class="filter-btn" data-filter="landscape">Landscape</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Grid – All images are Nigerian/Nigerian photographers -->
+    <!-- Portfolio Grid -->
     <section class="portfolio-grid-section">
         <div class="container">
             <div class="portfolio-grid">
-                <!-- Portrait 1 – Nigerian portrait photographer -->
-                <div class="portfolio-item" data-category="portrait" data-project="1">
-                    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2070&auto=format&fit=crop" alt="Nigerian Portrait" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Nigerian+Portrait'">
-                    <div class="portfolio-overlay">
-                        <h3>Lagos Elegance</h3>
-                        <p>Studio portrait series, Lagos</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Portrait</span>
-                            <span class="tag">Studio</span>
-                            <span class="tag">Lagos</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Urban Life – Lagos street scene -->
-                <div class="portfolio-item" data-category="urban" data-project="2">
-                    <img src="https://images.unsplash.com/photo-1545158534-c5305b2a64dd?q=80&w=1974&auto=format&fit=crop" alt="Lagos Street" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Lagos+Street'">
-                    <div class="portfolio-overlay">
-                        <h3>Streets of Lagos</h3>
-                        <p>Urban life documentary</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Urban</span>
-                            <span class="tag">Street</span>
-                            <span class="tag">Documentary</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cultural Event – Traditional wedding -->
-                <div class="portfolio-item" data-category="cultural" data-project="3">
-                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b3ce5aa?q=80&w=1974&auto=format&fit=crop" alt="Nigerian Wedding" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Nigerian+Wedding'">
-                    <div class="portfolio-overlay">
-                        <h3>Traditional Wedding</h3>
-                        <p>Yoruba ceremony, Lagos</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Cultural</span>
-                            <span class="tag">Wedding</span>
-                            <span class="tag">Event</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Commercial – Nigerian product shoot -->
-                <div class="portfolio-item" data-category="commercial" data-project="4">
-                    <img src="https://images.unsplash.com/photo-1560343776-97e7d202ff0e?q=80&w=1964&auto=format&fit=crop" alt="Nigerian Fashion" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Nigerian+Fashion'">
-                    <div class="portfolio-overlay">
-                        <h3>Lagos Fashion Week</h3>
-                        <p>Commercial fashion campaign</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Commercial</span>
-                            <span class="tag">Fashion</span>
-                            <span class="tag">Branding</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Landscape – Nigerian scenery -->
-                <div class="portfolio-item" data-category="landscape" data-project="5">
-                    <img src="https://images.unsplash.com/photo-1594189049828-24f0486c8944?q=80&w=1974&auto=format&fit=crop" alt="Nigerian Landscape" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Nigerian+Landscape'">
-                    <div class="portfolio-overlay">
-                        <h3>Obudu Hills</h3>
-                        <p>Highlands of Cross River</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Landscape</span>
-                            <span class="tag">Nature</span>
-                            <span class="tag">Travel</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Portrait 2 – Contemporary Nigerian -->
-                <div class="portfolio-item" data-category="portrait" data-project="6">
-                    <img src="https://images.unsplash.com/photo-1524666643752-381d2a4e4dfb?q=80&w=1974&auto=format&fit=crop" alt="Nigerian Youth" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Nigerian+Youth'">
-                    <div class="portfolio-overlay">
-                        <h3>Contemporary Lagos</h3>
-                        <p>Urban youth portrait series</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Portrait</span>
-                            <span class="tag">Urban</span>
-                            <span class="tag">Lifestyle</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cultural – Festival -->
-                <div class="portfolio-item" data-category="cultural" data-project="7">
-                    <img src="https://images.unsplash.com/photo-1542037103707-dc2c9f9a33ff?q=80&w=1974&auto=format&fit=crop" alt="Nigerian Festival" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Nigerian+Festival'">
-                    <div class="portfolio-overlay">
-                        <h3>Eyo Festival</h3>
-                        <p>Lagos cultural celebration</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Cultural</span>
-                            <span class="tag">Festival</span>
-                            <span class="tag">Tradition</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Commercial – Branding -->
-                <div class="portfolio-item" data-category="commercial" data-project="8">
-                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1974&auto=format&fit=crop" alt="Nigerian Brand" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Nigerian+Brand'">
-                    <div class="portfolio-overlay">
-                        <h3>Made in Nigeria</h3>
-                        <p>Product branding campaign</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Commercial</span>
-                            <span class="tag">Product</span>
-                            <span class="tag">Branding</span>
-                        </div>
-                    </div>
-                </div>
+                <figure class="portfolio-item" data-index="3">
+                    <img src="images/portrait-03.jpg" alt="Full-length portrait of a woman in a black off-shoulder gown in front of a dark patterned backdrop" loading="lazy">
+                </figure>
+                <figure class="portfolio-item" data-index="2">
+                    <img src="images/portrait-02.jpg" alt="Studio portrait of a woman in a brown mesh top against a warm tan backdrop" loading="lazy">
+                </figure>
+                <figure class="portfolio-item" data-index="9">
+                    <img src="images/portrait-09.jpg" alt="Portrait of a man in a straw hat and knit vest seated on a folding stool" loading="lazy">
+                </figure>
+                <figure class="portfolio-item" data-index="1">
+                    <img src="images/portrait-01.jpg" alt="Studio portrait of a man in a grey shirt and patterned tie against a grey backdrop" loading="lazy">
+                </figure>
+                <figure class="portfolio-item" data-index="13">
+                    <img src="images/portrait-13.jpg" alt="Portrait of a woman in a white robe and glasses resting her chin on her hand against a blue backdrop" loading="lazy">
+                </figure>
+                <figure class="portfolio-item" data-index="4">
+                    <img src="images/portrait-04.jpg" alt="Dramatic full-length portrait of a woman in a black gown standing in a pool of spotlight" loading="lazy">
+                </figure>
+                <figure class="portfolio-item" data-index="8">
+                    <img src="images/portrait-08.jpg" alt="Portrait of a young man in a navy blazer, red tie and white hat seated on a wooden chair" loading="lazy">
+                </figure>
+                <figure class="portfolio-item" data-index="6">
+                    <img src="images/portrait-06.jpg" alt="Portrait of a woman seated on a wooden chair, looking up and away" loading="lazy">
+                </figure>
+                <figure class="portfolio-item" data-index="11">
+                    <img src="images/portrait-11.jpg" alt="Seated portrait of a man in a white embroidered outfit against a grey backdrop" loading="lazy">
+                </figure>
+                <figure class="portfolio-item" data-index="10">
+                    <img src="images/portrait-10.jpg" alt="Full-length portrait of a woman in a white embroidered robe holding a gold handbag against a blue backdrop" loading="lazy">
+                </figure>
+                <figure class="portfolio-item" data-index="5">
+                    <img src="images/portrait-05.jpg" alt="Smiling studio portrait of a woman in a blue patterned blouse and black vest" loading="lazy">
+                </figure>
+                <figure class="portfolio-item" data-index="7">
+                    <img src="images/portrait-07.jpg" alt="Full-length studio portrait of a woman in a black pinafore dress and patterned blouse" loading="lazy">
+                </figure>
+                <figure class="portfolio-item" data-index="12">
+                    <img src="images/portrait-12.jpg" alt="High-angle portrait of a woman in a light blue dress seated on a wooden chair" loading="lazy">
+                </figure>
+                <figure class="portfolio-item" data-index="15">
+                    <img src="images/portrait-15.jpg" alt="Three-quarter portrait of a woman in a light blue dress and glasses against a neutral backdrop" loading="lazy">
+                </figure>
+                <figure class="portfolio-item" data-index="14">
+                    <img src="images/portrait-14.jpg" alt="Seated portrait of a woman in a light blue dress and glasses on a wooden chair" loading="lazy">
+                </figure>
             </div>
-            
+
             <div class="view-more">
-                <p style="color: var(--color-text-muted); margin-bottom: 20px;">Inspired by Nigerian photographers: Nosa Obaseki, Ortega Alikwe, The Wallpaper Guy & more [citation:1][citation:3][citation:8]</p>
+                <p style="color: var(--color-text-muted); margin-bottom: 20px;">Want a session like these? Tell us about your idea.</p>
                 <a href="booking.html" class="btn btn-primary">Book Your Shoot</a>
             </div>
         </div>
     </section>
 
-    <!-- Modal -->
-    <div class="portfolio-modal" id="portfolioModal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">&times;</button>
-            <div class="modal-image">
-                <img id="modalImage" src="" alt="">
-            </div>
-            <div class="modal-details">
-                <h2 id="modalTitle">Project Title</h2>
-                <p id="modalDescription">Description will appear here.</p>
-                <div class="modal-info">
-                    <div class="info-item">
-                        <h4>Location</h4>
-                        <p id="modalLocation">Lagos, Nigeria</p>
-                    </div>
-                    <div class="info-item">
-                        <h4>Category</h4>
-                        <p id="modalCategory">Portrait</p>
-                    </div>
-                    <div class="info-item">
-                        <h4>Year</h4>
-                        <p id="modalYear">2026</p>
-                    </div>
-                </div>
-                <a href="booking.html" class="btn btn-primary">Book Similar Project</a>
-            </div>
-        </div>
+    <!-- Lightbox -->
+    <div class="lb" id="lb" aria-hidden="true">
+        <button class="lb-btn lb-close" id="lbClose" aria-label="Close">&times;</button>
+        <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photo">&#8249;</button>
+        <img id="lbImg" src="" alt="">
+        <button class="lb-btn lb-next" id="lbNext" aria-label="Next photo">&#8250;</button>
     </div>
 </main>
 
@@ -825,7 +735,7 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>JCREATIVES<span>.</span></h4>
-                <p>Nigerian photography and creative studio serving clients worldwide.</p>
+                <p>International photography and creative studio serving clients worldwide.</p>
             </div>
             <div class="footer-section">
                 <h4>Quick Links</h4>
@@ -835,26 +745,16 @@
                     <li><a href="services.html">Services</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="http://localhost/gallery/login.php" target="_blank" style="color:#2D9CDB;">Client Login</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>Contact Info</h4>
                 <ul>
-                    <li><a href="mailto:book@jcreatives.com">book@jcreatives.com</a></li>
+                    <li><a href="mailto:jcreativesmultimediaproduction@gmail.com">jcreativesmultimediaproduction@gmail.com</a></li>
                     <li><a href="tel:+2349038606645">+234 903 860 6645</a></li>
-                    <li>Lagos, Nigeria</li>
                     <li>Available Worldwide</li>
+                    <li>24/7 Online Support</li>
                 </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Follow Us</h4>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                </div>
             </div>
         </div>
         <div class="footer-bottom">
@@ -917,88 +817,28 @@
         }
     });
 
-    // Filter functionality
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            const filterValue = button.getAttribute('data-filter');
-            
-            portfolioItems.forEach(item => {
-                if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-    });
-
-    // Modal functionality
-    const modal = document.getElementById('portfolioModal');
-    const modalClose = document.getElementById('modalClose');
-    const modalImage = document.getElementById('modalImage');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDescription = document.getElementById('modalDescription');
-    const modalCategory = document.getElementById('modalCategory');
-    const modalLocation = document.getElementById('modalLocation');
-    const modalYear = document.getElementById('modalYear');
-
-    const projectDetails = {
-        1: { title: 'Lagos Elegance', desc: 'Studio portrait series capturing the grace of Lagos women. Natural lighting and bold compositions.', category: 'Portrait', location: 'Lagos', year: '2026', img: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2070&auto=format&fit=crop' },
-        2: { title: 'Streets of Lagos', desc: 'Documentary photography exploring the vibrant street life of Lagos Island.', category: 'Urban', location: 'Lagos Island', year: '2025', img: 'https://images.unsplash.com/photo-1545158534-c5305b2a64dd?q=80&w=1974&auto=format&fit=crop' },
-        3: { title: 'Traditional Wedding', desc: 'Yoruba traditional wedding ceremony captured with cultural sensitivity and artistic flair.', category: 'Cultural', location: 'Ikeja, Lagos', year: '2026', img: 'https://images.unsplash.com/photo-1522673607200-164d1b3ce5aa?q=80&w=1974&auto=format&fit=crop' },
-        4: { title: 'Lagos Fashion Week', desc: 'Commercial campaign featuring emerging Nigerian designers on the runway.', category: 'Commercial', location: 'Eko Hotel', year: '2025', img: 'https://images.unsplash.com/photo-1560343776-97e7d202ff0e?q=80&w=1964&auto=format&fit=crop' },
-        5: { title: 'Obudu Hills', desc: 'Breathtaking landscapes of the Obudu Mountain Resort in Cross River State.', category: 'Landscape', location: 'Cross River', year: '2025', img: 'https://images.unsplash.com/photo-1594189049828-24f0486c8944?q=80&w=1974&auto=format&fit=crop' },
-        6: { title: 'Contemporary Lagos', desc: 'Urban youth culture documented through candid street portraits.', category: 'Portrait', location: 'Lagos Mainland', year: '2026', img: 'https://images.unsplash.com/photo-1524666643752-381d2a4e4dfb?q=80&w=1974&auto=format&fit=crop' },
-        7: { title: 'Eyo Festival', desc: 'The annual Eyo festival on Lagos Island – a celebration of Yoruba heritage.', category: 'Cultural', location: 'Lagos Island', year: '2025', img: 'https://images.unsplash.com/photo-1542037103707-dc2c9f9a33ff?q=80&w=1974&auto=format&fit=crop' },
-        8: { title: 'Made in Nigeria', desc: 'Product branding campaign celebrating locally made goods and craftsmanship.', category: 'Commercial', location: 'Lagos', year: '2026', img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1974&auto=format&fit=crop' }
-    };
-
-    portfolioItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const id = item.getAttribute('data-project');
-            const details = projectDetails[id] || projectDetails[1];
-            
-            modalImage.src = details.img;
-            modalTitle.textContent = details.title;
-            modalDescription.textContent = details.desc;
-            modalCategory.textContent = details.category;
-            modalLocation.textContent = details.location;
-            modalYear.textContent = details.year;
-            
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    });
-
-    modalClose.addEventListener('click', () => {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    });
-
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-
+    // Lightbox
+    const lb = document.getElementById('lb');
+    const lbImg = document.getElementById('lbImg');
+    const shots = Array.from(document.querySelectorAll('.portfolio-item img'));
+    let cur = 0;
+    function show(i) {
+        cur = (i + shots.length) % shots.length;
+        lbImg.src = shots[cur].src;
+        lbImg.alt = shots[cur].alt;
+    }
+    function openLb(i) { show(i); lb.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLb() { lb.classList.remove('active'); document.body.style.overflow = 'auto'; }
+    shots.forEach((img, i) => img.parentElement.addEventListener('click', () => openLb(i)));
+    document.getElementById('lbClose').addEventListener('click', closeLb);
+    document.getElementById('lbPrev').addEventListener('click', () => show(cur - 1));
+    document.getElementById('lbNext').addEventListener('click', () => show(cur + 1));
+    lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-
-    // Image fallback
-    document.querySelectorAll('.portfolio-item img').forEach(img => {
-        img.onerror = function() {
-            this.src = 'https://via.placeholder.com/600x400?text=Nigerian+Photography';
-        };
+        if (!lb.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLb();
+        if (e.key === 'ArrowLeft') show(cur - 1);
+        if (e.key === 'ArrowRight') show(cur + 1);
     });
 </script>
 
